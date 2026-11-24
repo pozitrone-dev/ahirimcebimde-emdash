@@ -1,0 +1,27 @@
+---
+import PostVisual from "./PostVisual.astro";
+import { CATEGORY_STYLE } from "../lib/site";
+
+interface Props {
+	post: any;
+	category?: { slug: string; label: string } | null;
+	hidden?: boolean;
+	anchor?: string;
+}
+const { post, category, hidden = false, anchor } = Astro.props;
+const href = `/posts/${post.id}`;
+const eyebrow =
+	CATEGORY_STYLE[category?.slug ?? ""]?.label ?? category?.label ?? "Blog";
+---
+
+<article class:list={["post-row", { hidden }]} id={anchor}>
+	<div class="r-copy">
+		<span class="eyebrow">{eyebrow}</span>
+		<h2 class="t-heading-small"><a href={href}>{post.data.title}</a></h2>
+		{post.data.excerpt && <p>{post.data.excerpt}</p>}
+		<a class="link-text" href={href}>Devamını okuyun</a>
+	</div>
+	<a class="r-art" href={href} aria-hidden="true" tabindex="-1">
+		<PostVisual post={post} category={category?.slug} />
+	</a>
+</article>

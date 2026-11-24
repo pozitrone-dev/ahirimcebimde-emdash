@@ -1,0 +1,62 @@
+---
+import type { MenuItem } from "emdash";
+import { CHEV, FB, IG } from "./Icons";
+
+interface Props {
+	columns: MenuItem[];
+	legal: MenuItem[];
+	instagram?: string;
+	facebook?: string;
+}
+const { columns, legal, instagram, facebook } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="wide" style="padding:0">
+		<div class="foot-top">
+			<a class="brand" href="/"><img src="/assets/icon.png" alt="" />Ahırım Cebimde</a>
+			<div class="foot-util">
+				<div class="lang">
+					<span>Dil seçin:</span><button type="button" aria-label="Dil: Türkçe">Türkçe<Fragment set:html={CHEV} /></button>
+				</div>
+				<div class="social">
+					{instagram && <a href={instagram} aria-label="Instagram" set:html={IG} />}
+					{facebook && <a href={facebook} aria-label="Facebook" set:html={FB} />}
+				</div>
+			</div>
+		</div>
+		<div class="foot-cols">
+			{
+				columns.map((col) => (
+					<div>
+						<h4>{col.label}</h4>
+						<ul>
+							{col.children.map((l) => (
+								<li>
+									<a href={l.url} target={l.target}>
+										{l.label}
+									</a>
+								</li>
+							))}
+							{col.label === "Ahırım Cebimde" && instagram && (
+								<li>
+									<a href={instagram}>Instagram</a>
+								</li>
+							)}
+							{col.label === "Ahırım Cebimde" && facebook && (
+								<li>
+									<a href={facebook}>Facebook</a>
+								</li>
+							)}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+		<div class="foot-legal">
+			<span class="copy">© {year} Ahırım Cebimde. Tüm hakları saklıdır.</span>
+			{legal.map((l) => <a href={l.url}>{l.label}</a>)}
+		</div>
+	</div>
+</footer>

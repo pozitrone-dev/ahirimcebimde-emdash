@@ -10,7 +10,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "astro build && wrangler deploy",
+    "migrate": "emdash migrate --wrangler-config wrangler.jsonc --account-id 3329710b724df99cf1b8a9f459c50038",
+    "migrate:check": "emdash migrate --check --wrangler-config wrangler.jsonc --account-id 3329710b724df99cf1b8a9f459c50038",
+    "deploy": "astro build && pnpm migrate && wrangler deploy && pnpm migrate:check",
     "typecheck": "astro check"
   },
   "dependencies": {

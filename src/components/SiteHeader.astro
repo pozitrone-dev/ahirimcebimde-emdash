@@ -1,0 +1,118 @@
+---
+import type { MenuItem } from "emdash";
+import { CHEV } from "./Icons";
+import { LOGIN } from "../lib/site";
+
+interface Props {
+	items: MenuItem[];
+}
+const { items } = Astro.props;
+const ext = (url: string) => /^https?:/.test(url) && !url.includes("ahirimcebimde.com");
+---
+
+<header class="header" id="header">
+	<div class="appbar" id="appbar">
+		<img src="/assets/icon.png" alt="" />
+		<div class="ab-t"><b>Ahırım Cebimde</b><span>Uygulamayı edinin</span></div>
+		<a class="ab-dl" href="/#indir">İndir</a>
+		<button class="ab-x" aria-label="Kapat"
+			><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+				><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg
+			></button
+		>
+	</div>
+	<div class="nav-row">
+		<div class="wide">
+			<a class="brand" href="/" aria-label="Ahırım Cebimde ana sayfa"
+				><img src="/assets/icon.png" alt="" />Ahırım Cebimde</a
+			>
+			<ul class="nav-links">
+				{
+					items.map((item) =>
+						item.children.length > 0 ? (
+							<li class="nav-drop" id="drop">
+								<button class="nav-link" aria-expanded="false" aria-controls="mega">
+									{item.label}
+									<Fragment set:html={CHEV} />
+								</button>
+								<div class="mega" id="mega">
+									<div class="wide">
+										{item.children.map((col) => (
+											<div>
+												<h5>{col.label}</h5>
+												<ul>
+													{(col.children.length ? col.children : [col]).map((l) => (
+														<li>
+															<a href={l.url} target={l.target}>
+																<span>{l.label}</span>
+															</a>
+														</li>
+													))}
+												</ul>
+											</div>
+										))}
+									</div>
+								</div>
+							</li>
+						) : (
+							<li>
+								<a class="nav-link" href={item.url} target={item.target}>
+									{item.label}
+								</a>
+							</li>
+						),
+					)
+				}
+			</ul>
+			<div class="nav-actions">
+				<a class="nav-link" href={LOGIN}>Giriş yap</a>
+				<a class="btn btn-outline" href="/#indir">Uygulamayı indir</a>
+				<a class="btn btn-compact" href={LOGIN}>Hemen başlayın</a>
+			</div>
+			<button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="drawer">
+				<svg class="bars" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+					><path d="M5 8h18M5 14h18M5 20h18"></path></svg
+				>
+				<svg class="x" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+					><path d="M7 7l14 14M21 7L7 21"></path></svg
+				>
+			</button>
+		</div>
+	</div>
+	<nav class="drawer" id="drawer" aria-label="Mobil menü">
+		<div class="d-links">
+			{
+				items.map((item) =>
+					item.children.length > 0 ? (
+						<div class="d-acc">
+							<button aria-expanded="false">
+								{item.label}
+								<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+									<path d="M4 6l4 4 4-4" />
+								</svg>
+							</button>
+							<ul>
+								<div>
+									{item.children
+										.flatMap((c) => (c.children.length ? c.children : [c]))
+										.filter((l) => !ext(l.url))
+										.map((l) => (
+											<li>
+												<a href={l.url}>{l.label}</a>
+											</li>
+										))}
+								</div>
+							</ul>
+						</div>
+					) : (
+						<a href={item.url}>{item.label}</a>
+					),
+				)
+			}
+		</div>
+		<div class="d-foot">
+			<a class="btn btn-compact" href="/#indir">Uygulamayı indir</a>
+			<a class="btn btn-outline" href={LOGIN}>Giriş yap</a>
+		</div>
+	</nav>
+</header>

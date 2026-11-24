@@ -1,101 +1,113 @@
 ---
 import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../layouts/Base.astro";
-import PostCard from "../../components/PostCard.astro";
-import Pagination from "../../components/Pagination.astro";
+import PostRow from "../../components/PostRow.astro";
+import { CATEGORY_STYLE } from "../../lib/site";
 
-// Sort in the database rather than in JS — lets the DB use its index on
-// published_at and avoids a full-table scan on the client.
-const cursor = Astro.url.searchParams.get("cursor") || undefined;
-const {
-	entries: posts,
-	cacheHint,
-	nextCursor,
-} = await getEmDashCollection("posts", {
+const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
 	orderBy: { published_at: "desc" },
-	limit: 20,
-	cursor,
+	limit: 100,
 });
-
 if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
 
-// Single batched query for tags across all posts, instead of one
-// getEntryTerms() call per post (which would be N round-trips).
-// Bylines are already hydrated on entry.data.bylines.
-const tagsByEntry = await getTermsForEntries(
+const cats = await getTermsForEntries(
 	"posts",
 	posts.map((p) => p.data.id),
-	"tag",
+	"category",
 );
+const catOf = (p: (typeof posts)[number]) => cats.get(p.data.id)?.[0] ?? null;
 
-const postsWithTags = posts.map((post) => ({
-	post,
-	tags: tagsByEntry.get(post.data.id) ?? [],
-}));
+// Featured band: newest "Yenilikler" post, otherwise the newest post.
+const featured =
+	posts.find((p) => catOf(p)?.slug === "yenilikler") ?? posts[0] ?? null;
+const rest = posts.filter((p) => p !== featured);
+const firstGuide = rest.findIndex(
+	(p) => catOf(p) && catOf(p)?.slug !== "yenilikler",
+);
+const fd = featured?.data as any;
+const fScreens: string[] = Array.isArray(fd?.ekran) ? fd.ekran : fd?.ekran ? [fd.ekran] : [];
 ---
 
-<Base title="All Posts" description="Browse all blog posts">
-	<header class="band intro">
-		<div class="frame">
-			<p class="eyebrow">Archive</p>
-			<h1 class="intro__title">All Posts</h1>
-			<p class="intro__lead">Every post, newest first.</p>
-		</div>
-	</header>
+<Base title="Blog" description="Ahırım Cebimde yenilikleri ve sürü yönetimi Rehber yazıları.">
+	<section class="page-head">
+		<h1 class="t-display">Ahırım Cebimde'den haberler</h1>
+		<p class="t-intro">
+			Yeni sürümler, uygulamadaki değişiklikler ve sürü yönetimi üzerine Rehber yazıları. Çiftliğinizde işinize yarayacak her şey burada.
+		</p>
+	</section>
 
-	<section class="band section archive-band">
-		<div class="frame">
-			{
-				posts.length === 0 ? (
-					<div class="empty-state">
-						<h2 class="empty-state__title">
-							{cursor ? "No more posts" : "No posts yet"}
+	{
+		featured && (
+			<section class="featured" aria-labelledby="f-title">
+				<div class="wide">
+					<div class="f-copy">
+						<span class="eyebrow">
+							{CATEGORY_STYLE[catOf(featured)?.slug ?? ""]?.label ?? catOf(featured)?.label ?? "Blog"}
+						</span>
+						<h2 class="t-heading" id="f-title">
+							<a href={`/posts/${featured.id}`} style="text-decoration:none">{featured.data.title}</a>
 						</h2>
-						<p class="empty-state__text">
-							{cursor
-								? "You have reached the end of the archive."
-								: "Published posts will show up here."}
-						</p>
-						{cursor && (
-							<div class="empty-state__actions">
-								<a href="/posts" class="btn btn--ghost">
-									First page
-								</a>
+						{featured.data.excerpt && <p>{featured.data.excerpt}</p>}
+						<a class="link-text" href={`/posts/${featured.id}`}>Devamını okuyun</a>
+					</div>
+					<div class="f-art">
+						{fScreens[0] && (
+							<figure class="screen" style="left:8%;top:0;width:290px;height:600px">
+								<img src={`/assets/ekranlar/${fScreens[0]}.webp`} alt={fd.ekran_aciklama || featured.data.title} />
+							</figure>
+						)}
+						{fScreens[1] && (
+							<figure class="screen" style="left:calc(8% + 320px);top:80px;width:290px;height:600px">
+								<img src={`/assets/ekranlar/${fScreens[1]}.webp`} alt="" />
+							</figure>
+						)}
+						{fd.balon && (
+							<div class="chip-card" style="left:calc(8% + 200px);top:300px;width:230px;z-index:3">
+								{fd.balon_ust && <div class="k">{fd.balon_ust}</div>}
+								<div class="v">{fd.balon}</div>
 							</div>
 						)}
 					</div>
-				) : (
-					<>
-						<ol class="archive__list">
-							{postsWithTags.map(({ post, tags }) => (
-								<li>
-									<PostCard post={post} tags={tags} variant="row" />
-								</li>
-							))}
-						</ol>
-						<Pagination
-							basePath="/posts"
-							cursor={cursor}
-							nextCursor={nextCursor}
-						/>
-					</>
-				)
-			}
-		</div>
+				</div>
+			</section>
+		)
+	}
+
+	<section class="posts">
+		{
+			posts.length === 0 && (
+				<p class="t-intro" style="text-align:center">Henüz yayımlanmış yazı yok.</p>
+			)
+		}
+		{
+			rest.map((post, i) => (
+				<PostRow
+					post={post}
+					category={catOf(post)}
+					hidden={i >= 5}
+					anchor={i === firstGuide ? "rehber" : undefined}
+				/>
+			))
+		}
+		{
+			rest.length > 5 && (
+				<div class="load-more">
+					<button class="btn btn-outline" id="more">Daha fazla yükle</button>
+				</div>
+			)
+		}
 	</section>
+	<script is:inline slot="scripts">
+		(function () {
+			var b = document.getElementById("more");
+			var h = [].slice.call(document.querySelectorAll(".post-row.hidden"));
+			if (!b) return;
+			function showAll() {
+				h.forEach(function (r) { r.classList.remove("hidden"); });
+				b.parentElement.remove();
+			}
+			b.addEventListener("click", showAll);
+			if (location.hash === "#rehber") showAll();
+		})();
+	</script>
 </Base>
-
-<style>
-	/* The band's rule doubles as the first row divider */
-	.archive-band {
-		padding-block-start: 0;
-	}
-
-	.archive__list {
-		list-style: none;
-	}
-
-	.archive__list > li + li {
-		border-block-start: 1px solid var(--color-border);
-	}
-</style>

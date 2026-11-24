@@ -1,12 +1,13 @@
 import type { APIRoute } from "astro";
 import { getEmDashCollection, getSiteSettings } from "emdash";
 
-import { getSiteLocale } from "../utils/locale";
-import { resolveBlogSiteIdentity } from "../utils/site-identity";
+import { SITE_DESC, SITE_NAME } from "../lib/site";
 
 export const GET: APIRoute = async ({ site, url }) => {
 	const siteUrl = site ?? new URL(url.origin);
-	const { siteTitle, siteTagline } = resolveBlogSiteIdentity(await getSiteSettings());
+	const settings = await getSiteSettings();
+	const siteTitle = SITE_NAME;
+	const siteTagline = settings?.tagline || SITE_DESC;
 
 	const { entries: posts } = await getEmDashCollection("posts", {
 		orderBy: { published_at: "desc" },
@@ -19,7 +20,7 @@ export const GET: APIRoute = async ({ site, url }) => {
 			const pubDate = post.data.publishedAt.toUTCString();
 
 			const postUrl = new URL(`/posts/${post.id}`, siteUrl).href;
-			const title = escapeXml(post.data.title || "Untitled");
+			const title = escapeXml(post.data.title || "Başlıksız");
 			const description = escapeXml(post.data.excerpt || "");
 
 			return `    <item>
@@ -40,7 +41,7 @@ export const GET: APIRoute = async ({ site, url }) => {
     <description>${escapeXml(siteTagline)}</description>
 	<link>${siteUrl.href}</link>
 	<atom:link href="${new URL("/rss.xml", siteUrl).href}" rel="self" type="application/rss+xml"/>
-    <language>${getSiteLocale() ?? "en-us"}</language>
+    <language>tr-tr</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${items}
   </channel>

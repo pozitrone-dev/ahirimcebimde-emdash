@@ -1,0 +1,64 @@
+---
+/**
+ * Blog tile visual. Priority: featured image (cover photo) → app screens
+ * chosen in the post's "Ekran" field → pictogram grid.
+ */
+import { Image } from "emdash/ui";
+import { PICS } from "../lib/pics";
+import { CATEGORY_STYLE } from "../lib/site";
+
+interface Props {
+	post: any;
+	category?: string | null;
+	wide?: boolean;
+	priority?: boolean;
+}
+const { post, category, wide = false, priority = false } = Astro.props;
+const d = post.data;
+const bg = CATEGORY_STYLE[category ?? ""]?.bg ?? "#f2efe9";
+const picKey = category === "besleme" ? "yem" : category;
+const pic = picKey && PICS[picKey] ? PICS[picKey] : null;
+const screens: string[] = Array.isArray(d.ekran)
+	? d.ekran.filter(Boolean)
+	: d.ekran
+		? [d.ekran]
+		: [];
+const alt = d.ekran_aciklama || d.title;
+const grid = ["topluluk", "pazar", "saglik", "rehber", "ureme", "sut"];
+---
+
+{
+	d.featured_image ? (
+		<div class="tile tile-photo" style={`background:${bg}`}>
+			<Image image={d.featured_image} alt={d.featured_image.alt || d.title} width={1200} height={800} priority={priority} />
+		</div>
+	) : screens.length >= 2 ? (
+		<div class="tile" style={`background:${bg}`}>
+			<figure class="screen" style="left:calc(50% - 250px);top:56px;width:240px;height:500px">
+				<img src={`/assets/ekranlar/${screens[0]}.webp`} alt={alt} loading={priority ? "eager" : "lazy"} />
+			</figure>
+			<figure class="screen" style="left:calc(50% + 10px);top:96px;width:240px;height:500px">
+				<img src={`/assets/ekranlar/${screens[1]}.webp`} alt="" loading={priority ? "eager" : "lazy"} />
+			</figure>
+		</div>
+	) : screens.length === 1 ? (
+		<div class:list={["tile", { "wide-tile": wide }]} style={`background:${bg}`}>
+			{pic && <svg class="pic-big" viewBox="0 0 56 56" aria-hidden="true" set:html={pic} />}
+			<figure class="screen">
+				<img src={`/assets/ekranlar/${screens[0]}.webp`} alt={alt} loading={priority ? "eager" : "lazy"} />
+			</figure>
+			{d.balon && (
+				<div class="bubble" style="right:24px;bottom:40px">
+					<small>{d.balon_ust || "Uygulamada"}</small>
+					{d.balon}
+				</div>
+			)}
+		</div>
+	) : (
+		<div class="tile" style={`background:${bg}`}>
+			<div class="picto-grid">
+				{grid.map((k) => <svg viewBox="0 0 56 56" aria-hidden="true" set:html={PICS[k]} />)}
+			</div>
+		</div>
+	)
+}

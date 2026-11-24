@@ -11,6 +11,7 @@ export interface Page {
   status: string;
   title: string;
   content?: PortableTextBlock[];
+  ust_bilgi?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -27,6 +28,10 @@ export interface Post {
   featured_image?: { id: string; src?: string; alt?: string; caption?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; caption?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
   content?: PortableTextBlock[];
   excerpt?: string;
+  ekran?: ("pano" | "kayit" | "suru" | "hayvan" | "ureme" | "sut" | "saglik" | "besleme" | "besi" | "gelir-gider")[];
+  ekran_aciklama?: string;
+  balon_ust?: string;
+  balon?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

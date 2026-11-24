@@ -1,0 +1,12 @@
+/** Category pictograms (56×56 viewBox) from the Ahırım Cebimde design system. */
+export const PICS: Record<string, string> = {
+	"ureme": "<path d=\"M28 48S7 36 7 21a11 11 0 0 1 21-5 11 11 0 0 1 21 5c0 15-21 27-21 27z\" fill=\"#fad0f6\"/><path d=\"M15 24h7l3-6 5 12 3-6h8\" fill=\"none\" stroke=\"#141414\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+	"yem": "<path d=\"M28 50V20\" stroke=\"#141414\" stroke-width=\"3\" stroke-linecap=\"round\"/><ellipse cx=\"21\" cy=\"18\" rx=\"6\" ry=\"10\" transform=\"rotate(-30 21 18)\" fill=\"#ffd919\"/><ellipse cx=\"35\" cy=\"18\" rx=\"6\" ry=\"10\" transform=\"rotate(30 35 18)\" fill=\"#ffd919\"/><ellipse cx=\"20\" cy=\"33\" rx=\"6\" ry=\"10\" transform=\"rotate(-40 20 33)\" fill=\"#ffa24d\"/><ellipse cx=\"36\" cy=\"33\" rx=\"6\" ry=\"10\" transform=\"rotate(40 36 33)\" fill=\"#ffa24d\"/>",
+	"besi": "<rect x=\"6\" y=\"38\" width=\"44\" height=\"10\" rx=\"4\" fill=\"#141414\"/><path d=\"M28 8v26M14 18h28\" stroke=\"#141414\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M8 30l6-12 6 12a6 6 0 0 1-12 0zM36 30l6-12 6 12a6 6 0 0 1-12 0z\" fill=\"#94e130\"/>",
+	"finans": "<rect x=\"6\" y=\"12\" width=\"44\" height=\"34\" rx=\"8\" fill=\"#ffd919\"/><rect x=\"30\" y=\"23\" width=\"20\" height=\"12\" rx=\"6\" fill=\"#141414\"/><circle cx=\"37\" cy=\"29\" r=\"2.5\" fill=\"#ffd919\"/><path d=\"M14 12l20-6 4 6\" fill=\"#00a82d\"/>",
+	"sut": "<path d=\"M20 6h16v8l6 10v22a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V24l6-10z\" fill=\"#ffa24d\"/><rect x=\"18\" y=\"30\" width=\"20\" height=\"16\" rx=\"3\" fill=\"#fff\"/><rect x=\"20\" y=\"4\" width=\"16\" height=\"6\" rx=\"2\" fill=\"#141414\"/>",
+	"saglik": "<rect x=\"6\" y=\"6\" width=\"44\" height=\"44\" rx=\"12\" fill=\"#94e130\"/><path d=\"M23 14h10v9h9v10h-9v9H23v-9h-9V23h9z\" fill=\"#141414\"/>",
+	"topluluk": "<path d=\"M6 14a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6H18l-8 7v-7a6 6 0 0 1-4-6z\" fill=\"#ffa24d\"/><path d=\"M50 26a6 6 0 0 0-6-6h-2v8a10 10 0 0 1-10 10h-8a6 6 0 0 0 6 6h10l8 6v-7a6 6 0 0 0 2-5z\" fill=\"#fad0f6\"/>",
+	"rehber": "<path d=\"M6 12c8-3 15-3 22 2v34c-7-5-14-5-22-2z\" fill=\"#94e130\"/><path d=\"M50 12c-8-3-15-3-22 2v34c7-5 14-5 22-2z\" fill=\"#ffd919\"/>",
+	"pazar": "<path d=\"M8 20h40l-4 26H12z\" fill=\"#fad0f6\"/><path d=\"M18 20a10 10 0 0 1 20 0\" fill=\"none\" stroke=\"#141414\" stroke-width=\"3\" stroke-linecap=\"round\"/>"
+};

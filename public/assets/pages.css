@@ -1,0 +1,116 @@
+/* Inner pages: blog list, blog post, legal and company pages. Loaded after site.css. */
+
+/* ---------- Page head (blog list, FAQ, contact) ---------- */
+.page-head{text-align:center;padding:88px 20px 72px}
+.page-head .t-intro{max-width:672px;margin:24px auto 0;color:var(--color-body)}
+.eyebrow{display:block;font:600 12px/1.2 var(--font-display);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.link-text{font:500 16px/1.6 var(--font-display);letter-spacing:.01em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;transition:all .2s var(--ease-out);color:var(--color-ink)}
+.link-text:hover{color:var(--color-green);text-decoration-line:none}
+
+/* ---------- Blog: featured band ---------- */
+.featured{background:#fbe4f8;overflow:hidden}
+.featured .wide{display:flex;align-items:center;gap:64px;min-height:600px;padding-top:72px;padding-bottom:0}
+.featured .f-copy{flex:0 0 400px;padding:0 0 72px 60px}
+.featured h2{margin-bottom:16px}
+.featured p{font:400 16px/1.5 var(--font-text);color:var(--color-body);margin-bottom:24px}
+.featured .f-art{flex:1;align-self:stretch;position:relative;min-height:528px}
+
+/* ---------- Blog: rows ---------- */
+.posts{padding:40px 20px 120px}
+.post-row{max-width:1024px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:40px;padding:80px 0}
+.post-row .r-copy{flex:0 1 544px}
+.post-row h2{margin-bottom:24px}
+.post-row h2 a{text-decoration:none;transition:all .2s var(--ease)}
+.post-row h2 a:hover{color:var(--color-green)}
+.post-row p{font:400 16px/1.5 var(--font-text);color:var(--color-body);margin-bottom:24px}
+.post-row .r-art{flex:0 0 400px;height:440px;border-radius:16px;border:1px solid rgba(20,20,20,.2);overflow:hidden;position:relative;display:block}
+.post-row.hidden{display:none}
+.load-more{display:flex;justify-content:center;margin-top:24px}
+.load-more .btn-outline:hover{background:#fff;color:var(--color-ink)}
+
+/* visual tiles used by rows, featured band and post heroes */
+.tile{position:absolute;inset:0;overflow:hidden}
+.tile .screen{left:50%;margin-left:-120px;top:48px;width:240px;height:500px}
+.tile .pic-big{position:absolute;width:96px;height:96px;left:28px;top:28px}
+.tile.wide-tile .screen{width:260px;height:540px;margin-left:-130px;top:56px}
+.tile .bubble{position:absolute;background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 14px 30px -14px rgba(20,20,20,.3);font:600 15px/1.25 var(--font-display);max-width:210px}
+.tile .bubble small{display:block;font:600 11px/1.2 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--color-muted);margin-bottom:4px}
+.picto-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:56px}
+.picto-grid svg{width:76px;height:76px}
+
+/* ---------- Blog post ---------- */
+.post-top{max-width:1320px;margin:0 auto;padding:48px 20px 0;position:relative}
+.back{position:absolute;left:20px;top:56px;display:inline-flex;align-items:center;gap:8px;font:400 14px/1.4 var(--font-display);text-decoration:none;transition:all .2s var(--ease)}
+.back:hover{color:var(--color-green)}
+.back svg{width:18px;height:18px}
+.post-date{text-align:center;font:600 16px/1.5 var(--font-display)}
+.post-title{max-width:720px;margin:24px auto 24px;text-align:center}
+.post-hero{max-width:1186px;margin:40px auto 0;height:560px;border-radius:10px;border:1px solid rgba(20,20,20,.2);position:relative;overflow:hidden}
+.post-body{max-width:808px;margin:0 auto;padding:56px 20px 80px}
+.post-body .lead{font:600 20px/1.5 var(--font-display);margin-bottom:24px}
+.post-body p,.post-body li{font:400 18px/1.6 var(--font-display);letter-spacing:.01em}
+.post-body p{margin:0 0 24px}
+.post-body h2{font:600 30px/1.1 var(--font-display);letter-spacing:-.03em;margin:48px 0 16px}
+.post-body ul,.post-body ol{margin:0 0 24px;padding-left:24px;list-style:disc}
+.post-body ol{list-style:decimal}
+.post-body li{margin-bottom:8px}
+.post-body a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;transition:all .2s var(--ease-out)}
+.post-body a:hover{color:var(--color-green);text-decoration-line:none}
+.post-body .note{background:var(--color-panel);border:1px solid var(--color-edge);border-radius:10px;padding:20px 24px;font:400 16px/1.5 var(--font-text);color:var(--color-body);margin-top:40px}
+.post-body .sign{margin-top:40px;font-weight:600}
+.post-body table{width:100%;border-collapse:collapse;margin:0 0 24px;font:400 15px/1.5 var(--font-text)}
+.post-body th,.post-body td{border-bottom:1px solid #e6e6e6;padding:10px 8px;text-align:left;vertical-align:top}
+.post-body th{font-weight:600}
+.post-body strong{font-weight:600}
+.post-body .meta{font:400 15px/1.6 var(--font-text);color:var(--color-muted);text-align:center;margin-bottom:8px}
+
+/* ---------- FAQ rows ---------- */
+.faq{max-width:1320px;margin:0 auto;padding:0 20px 120px}
+.faq h2{margin:64px 0 24px}
+.faq-row{border-bottom:1px solid var(--color-control-edge)}
+.faq-row button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;background:none;border:0;cursor:pointer;text-align:left;font:600 20px/1.3 var(--font-display);color:var(--color-ink)}
+.faq-row .plus{width:24px;height:24px;flex:none;color:var(--color-green);transition:transform .3s ease-in-out}
+.faq-row.open .plus{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease-in-out}
+.faq-row.open .faq-a{grid-template-rows:1fr}
+.faq-a>div{overflow:hidden}
+.faq-a p{font:400 16px/1.5 var(--font-text);color:var(--color-body);padding:0 0 24px;max-width:860px}
+
+/* ---------- Contact / support cards ---------- */
+.cards3{max-width:1024px;margin:0 auto;padding:0 20px 120px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ccard{background:#fff;border-radius:10px;padding:32px;display:flex;flex-direction:column}
+.ccard .pic{width:48px;height:48px;margin-bottom:24px}
+.ccard h3{margin-bottom:8px}
+.ccard p{font:400 16px/1.4 var(--font-display);color:var(--color-muted);margin-bottom:24px;flex:1}
+.ccard .btn{width:100%}
+
+/* ---------- About ---------- */
+.about-stats{max-width:1024px;margin:0 auto;padding:0 20px 96px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.about-stats div{background:var(--color-panel);border:1px solid var(--color-edge);border-radius:16px;padding:32px 24px}
+.about-stats b{display:block;font:600 50px/1 var(--font-display);letter-spacing:-.05em;margin-bottom:8px}
+.about-stats span{font:400 16px/1.4 var(--font-text);color:var(--color-body)}
+
+@media (max-width:1024px){
+  .featured .wide{flex-direction:column;align-items:stretch;gap:32px;padding-top:48px}
+  .featured .f-copy{flex:none;padding:0}
+  .featured .f-art{min-height:440px}
+  .post-row{flex-direction:column;align-items:stretch;padding:48px 0;gap:32px}
+  .post-row .r-copy{flex:none}
+  .post-row .r-art{flex:none;width:100%;height:400px}
+  .cards3{grid-template-columns:1fr;max-width:560px}
+  .about-stats{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+  .page-head{padding:56px 20px 48px}
+  .back{position:static;margin-bottom:24px}
+  .post-top{padding-top:32px}
+  .post-hero{height:400px;margin:24px 0 0;border-radius:0;border-left:0;border-right:0}
+  .post-body{padding:40px 20px 64px}
+  .post-body h2{font-size:24px}
+  .faq-row button{font-size:16px}
+  .about-stats b{font-size:36px}
+  .featured .chip-card,.featured .f-art .screen+.screen{display:none}
+  .featured .f-art .screen{left:50%!important;margin-left:-145px}
+  .tile .screen:first-child:not(:only-of-type){display:none}
+  .tile .screen+.screen{left:50%!important;margin-left:-120px;top:40px!important}
+}
