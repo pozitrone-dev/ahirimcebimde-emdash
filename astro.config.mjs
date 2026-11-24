@@ -7,6 +7,10 @@ import { Features } from "lightningcss";
 
 export default defineConfig({
 	output: "server",
+	i18n: {
+		defaultLocale: "tr",
+		locales: ["tr"],
+	},
 	adapter: cloudflare(),
 	image: {
 		layout: "constrained",
