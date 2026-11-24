@@ -1,0 +1,32 @@
+---
+import { getEmDashCollection } from "emdash";
+import Base from "../../layouts/Base.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { needsSlash } from "../../lib/site";
+
+const fix = needsSlash(Astro.url);
+if (fix) return Astro.redirect(fix, 301);
+
+const { entries: news, cacheHint } = await getEmDashCollection("haberler", {
+	orderBy: { published_at: "desc" },
+	limit: 100,
+});
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+---
+
+<Base
+	title="Çiftçi Haberleri: Süt, Hibe ve Mevzuat"
+	description="Tarım ve hayvancılıkla ilgili resmi kaynaklardaki gelişmelerin kısa özetleri. Her habere kaynağına bağlantı verilir."
+	canonical={new URL("/haberler/", Astro.url.origin).href}
+>
+	<section class="page-head">
+		<h1 class="t-display">Haberler</h1>
+		<p class="t-intro">
+			Tarım ve hayvancılıkla ilgili resmi kaynaklardaki gelişmelerin kısa özetleri. Her habere kaynağına bağlantı verilir. Nasıl seçildiğini <a class="link-text" href="/haber-politikasi/">Haber politikası</a> sayfasında anlatıyoruz.
+		</p>
+	</section>
+	<section class="news-list">
+		{news.length === 0 && <p class="t-intro" style="text-align:center">Henüz yayımlanmış haber yok.</p>}
+		{news.map((item) => <NewsCard item={item} />)}
+	</section>
+</Base>

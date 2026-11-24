@@ -29,7 +29,7 @@ const cats = await getTermsForEntries("posts", posts.map((p) => p.data.id), "cat
 	<section class="page-head">
 		<span class="eyebrow">Etiket</span>
 		<h1 class="t-display">{term.label}</h1>
-		<p class="t-intro"><a class="link-text" href="/posts">Tüm yazılar</a></p>
+		<p class="t-intro"><a class="link-text" href="/blog/">Tüm yazılar</a></p>
 	</section>
 	<section class="posts">
 		{posts.length === 0 && <p class="t-intro" style="text-align:center">Bu başlıkta henüz yazı yok.</p>}

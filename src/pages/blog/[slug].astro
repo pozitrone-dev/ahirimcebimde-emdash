@@ -1,0 +1,110 @@
+---
+import {
+	getEmDashEntry,
+	getEntryTerms,
+	getSeoMeta,
+	decodeSlug,
+} from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "../../layouts/Base.astro";
+import PostVisual from "../../components/PostVisual.astro";
+import { ARROW_L } from "../../components/Icons";
+import {
+	CATEGORY_STYLE,
+	SITE_NAME,
+	blogUrl,
+	categoryUrl,
+	formatTrDate,
+	needsSlash,
+} from "../../lib/site";
+
+// The old ahirimcebimde.com served posts at /blog/{slug}/ with a trailing
+// slash. Keep that exact address so search results land on one canonical URL.
+const fix = needsSlash(Astro.url);
+if (fix) return Astro.redirect(fix, 301);
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry: post, cacheHint } = await getEmDashEntry("posts", slug);
+if (!post) return Astro.rewrite("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const terms = await getEntryTerms("posts", post.data.id, "category");
+const term = terms[0] ?? null;
+const category = term?.slug ?? null;
+const categoryLabel = term
+	? (CATEGORY_STYLE[term.slug]?.label ?? term.label)
+	: null;
+
+const path = blogUrl(post.id);
+const seo = getSeoMeta(post, {
+	siteTitle: SITE_NAME,
+	siteUrl: Astro.url.origin,
+	path,
+});
+const canonical = seo.canonical ?? new URL(path, Astro.url.origin).href;
+const published = post.data.publishedAt ?? null;
+const updated = (post.data as any).updatedAt ?? null;
+
+const d = post.data as any;
+const credits: any[] = Array.isArray(d.bylines) ? d.bylines : [];
+const author = credits[0] ?? null;
+const authorName: string | null = author?.byline?.displayName ?? null;
+const authorRole: string | null =
+	author?.roleLabel ?? author?.byline?.customFields?.gorev ?? null;
+const reviewer: string | null = d.gozden_geciren || null;
+---
+
+<Base
+	title={seo.title ?? post.data.title}
+	pageTitle={seo.ogTitle}
+	description={seo.description ?? post.data.excerpt}
+	canonical={canonical}
+	robots={seo.robots}
+	type="article"
+	publishedTime={published ? new Date(published).toISOString() : null}
+	modifiedTime={updated ? new Date(updated).toISOString() : null}
+	author={authorName}
+	content={{ collection: "posts", id: post.data.id, slug }}
+>
+	<div class="post-top">
+		<a class="back" href="/blog/"><Fragment set:html={ARROW_L} />Bloga dön</a>
+		{
+			categoryLabel && (
+				<p class="post-date">
+					<a class="post-cat" href={categoryUrl(category!)}>{categoryLabel}</a>
+				</p>
+			)
+		}
+		<h1 class="t-heading post-title" {...post.edit.title}>{post.data.title}</h1>
+		{
+			(authorName || published) && (
+				<div class="post-byline">
+					{authorName && (
+						<p>
+							<b>{authorName}</b>
+							{authorRole && <>, {authorRole}</>}
+						</p>
+					)}
+					{reviewer && (
+						<p>
+							Gözden geçiren: <b>{reviewer}</b>
+						</p>
+					)}
+					{published && (
+						<p class="muted">
+							Yayın: <time datetime={new Date(published).toISOString()}>{formatTrDate(published)}</time>
+						</p>
+					)}
+				</div>
+			)
+		}
+	</div>
+	<div class="post-hero" style="margin-left:auto;margin-right:auto">
+		<PostVisual post={post} category={category} wide priority />
+	</div>
+	<article class="post-body pt pt-post" {...post.edit.content}>
+		<PortableText value={post.data.content} />
+	</article>
+</Base>

@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { getEmDashCollection, getSiteSettings } from "emdash";
 
-import { SITE_DESC, SITE_NAME } from "../lib/site";
+import { SITE_DESC, SITE_NAME, newsTitle, ptText } from "../lib/site";
 
 export const GET: APIRoute = async ({ site, url }) => {
 	const siteUrl = site ?? new URL(url.origin);
@@ -9,19 +9,26 @@ export const GET: APIRoute = async ({ site, url }) => {
 	const siteTitle = SITE_NAME;
 	const siteTagline = settings?.tagline || SITE_DESC;
 
-	const { entries: posts } = await getEmDashCollection("posts", {
-		orderBy: { published_at: "desc" },
-		limit: 20,
-	});
+	// Blog posts and news, newest first, at their old ahirimcebimde.com URLs.
+	const [{ entries: posts }, { entries: news }] = await Promise.all([
+		getEmDashCollection("posts", { orderBy: { published_at: "desc" }, limit: 20 }),
+		getEmDashCollection("haberler", { orderBy: { published_at: "desc" }, limit: 20 }),
+	]);
+	const all = [
+		...posts.map((p) => ({ path: `/blog/${p.id}/`, data: p.data as any, summary: p.data.excerpt })),
+		...news.map((n) => ({ path: `/haberler/${n.id}/`, data: { ...(n.data as any), title: newsTitle(n.data) }, summary: ptText((n.data as any).icerik) })),
+	]
+		.filter((e) => e.data.publishedAt)
+		.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+		.slice(0, 30);
 
-	const items = posts
+	const items = all
 		.map((post) => {
-			if (!post.data.publishedAt) return null;
 			const pubDate = post.data.publishedAt.toUTCString();
 
-			const postUrl = new URL(`/posts/${post.id}`, siteUrl).href;
+			const postUrl = new URL(post.path, siteUrl).href;
 			const title = escapeXml(post.data.title || "Başlıksız");
-			const description = escapeXml(post.data.excerpt || "");
+			const description = escapeXml(String(post.summary || "").slice(0, 300));
 
 			return `    <item>
       <title>${title}</title>

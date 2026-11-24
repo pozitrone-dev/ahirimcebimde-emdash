@@ -2,7 +2,10 @@
 import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../layouts/Base.astro";
 import PostRow from "../../components/PostRow.astro";
-import { CATEGORY_STYLE } from "../../lib/site";
+import { CATEGORY_STYLE, blogUrl, needsSlash } from "../../lib/site";
+
+const fix = needsSlash(Astro.url);
+if (fix) return Astro.redirect(fix, 301);
 
 const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
 	orderBy: { published_at: "desc" },
@@ -28,11 +31,15 @@ const fd = featured?.data as any;
 const fScreens: string[] = Array.isArray(fd?.ekran) ? fd.ekran : fd?.ekran ? [fd.ekran] : [];
 ---
 
-<Base title="Blog" description="Ahırım Cebimde yenilikleri ve sürü yönetimi Rehber yazıları.">
+<Base
+	title="Blog: Süt ve Besi Çiftliği Rehberleri"
+	description="Süt ve besi çiftliği yönetimi üzerine kaynaklı yazılar: üreme, besleme, süt kalitesi, maliyet ve kayıt tutma."
+	canonical={new URL("/blog/", Astro.url.origin).href}
+>
 	<section class="page-head">
-		<h1 class="t-display">Ahırım Cebimde'den haberler</h1>
+		<h1 class="t-display">Blog</h1>
 		<p class="t-intro">
-			Yeni sürümler, uygulamadaki değişiklikler ve sürü yönetimi üzerine Rehber yazıları. Çiftliğinizde işinize yarayacak her şey burada.
+			Süt ve besi çiftliği yönetimi üzerine kaynaklı yazılar, yeni sürümler ve uygulamadaki değişiklikler. Resmi kaynaklardaki gelişmeler için <a class="link-text" href="/haberler/">Haberler</a> sayfasına bakın.
 		</p>
 	</section>
 
@@ -45,10 +52,10 @@ const fScreens: string[] = Array.isArray(fd?.ekran) ? fd.ekran : fd?.ekran ? [fd
 							{CATEGORY_STYLE[catOf(featured)?.slug ?? ""]?.label ?? catOf(featured)?.label ?? "Blog"}
 						</span>
 						<h2 class="t-heading" id="f-title">
-							<a href={`/posts/${featured.id}`} style="text-decoration:none">{featured.data.title}</a>
+							<a href={blogUrl(featured.id)} style="text-decoration:none">{featured.data.title}</a>
 						</h2>
 						{featured.data.excerpt && <p>{featured.data.excerpt}</p>}
-						<a class="link-text" href={`/posts/${featured.id}`}>Devamını okuyun</a>
+						<a class="link-text" href={blogUrl(featured.id)}>Devamını okuyun</a>
 					</div>
 					<div class="f-art">
 						{fScreens[0] && (

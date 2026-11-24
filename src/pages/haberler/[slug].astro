@@ -1,0 +1,99 @@
+---
+import { getEmDashCollection, getEmDashEntry, getSeoMeta, decodeSlug } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "../../layouts/Base.astro";
+import PageBlocks from "../../components/PageBlocks.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { ARROW_L } from "../../components/Icons";
+import { SITE_NAME, formatTrDate, needsSlash, newsTitle, newsUrl, ptText } from "../../lib/site";
+
+// Same address as the old ahirimcebimde.com: /haberler/{slug}/
+const fix = needsSlash(Astro.url);
+if (fix) return Astro.redirect(fix, 301);
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry: item, cacheHint } = await getEmDashEntry("haberler", slug);
+if (!item) return Astro.rewrite("/404");
+
+const { entries: latest, cacheHint: listHint } = await getEmDashCollection("haberler", {
+	orderBy: { published_at: "desc" },
+	limit: 4,
+});
+if (Astro.cache?.enabled) {
+	Astro.cache.set(cacheHint);
+	Astro.cache.set(listHint);
+}
+const related = latest.filter((n) => n.id !== item.id).slice(0, 3);
+
+const d = item.data as any;
+const path = newsUrl(item.id);
+const seo = getSeoMeta(item, { siteTitle: SITE_NAME, siteUrl: Astro.url.origin, path });
+const canonical = seo.canonical ?? new URL(path, Astro.url.origin).href;
+const published = d.publishedAt ?? null;
+const title = newsTitle(d);
+const summary = ptText(d.icerik);
+const description = seo.description ?? (summary ? summary.slice(0, 155) : null);
+const blocks: any[] = Array.isArray(d.bolum) ? d.bolum : [];
+---
+
+<Base
+	title={seo.title ?? title}
+	pageTitle={seo.ogTitle}
+	description={description}
+	canonical={canonical}
+	robots={seo.robots}
+	type="article"
+	publishedTime={published ? new Date(published).toISOString() : null}
+	content={{ collection: "haberler", id: d.id, slug }}
+>
+	<div class="post-top">
+		<a class="back" href="/haberler/"><Fragment set:html={ARROW_L} />Haberlere dön</a>
+		<p class="post-date"><span class="post-cat">Haber</span></p>
+		<h1 class="t-heading post-title" {...item.edit.baslik}>{title}</h1>
+		{d.ust_bilgiler && <p class="meta">{d.ust_bilgiler}</p>}
+	</div>
+	<article class="post-body news-body">
+		<div class="news-meta">
+			<ul>
+				{d.kaynak && <li>Kaynak: <b>{d.kaynak}</b></li>}
+				{d.kaynak_tarihi && (
+					<li>
+						Kaynak yayın tarihi: <time datetime={new Date(d.kaynak_tarihi).toISOString()}><b>{formatTrDate(d.kaynak_tarihi)}</b></time>
+					</li>
+				)}
+				{published && (
+					<li>
+						Özet yayın tarihi: <time datetime={new Date(published).toISOString()}><b>{formatTrDate(published)}</b></time>
+					</li>
+				)}
+			</ul>
+			{d.kaynak_url && (
+				<a class="btn btn-primary" href={d.kaynak_url} target="_blank" rel="noopener">
+					Kaynağa git<span class="sr-only"> (yeni sekmede açılır)</span>
+				</a>
+			)}
+		</div>
+		<div class="pt" {...item.edit.icerik}>
+			{d.icerik && <PortableText value={d.icerik} />}
+		</div>
+		<p class="news-note">
+			Bu özet yayınlandığı tarihteki kaynak bilgilerine dayanır. Ayrıntı için <a href="/haber-politikasi/">Haber politikası</a>.
+			{d.kaynak_url && (
+				<>
+					{" "}Orijinal metin ve tüm ayrıntılar için <a href={d.kaynak_url} target="_blank" rel="noopener">kaynağa bakın<span class="sr-only"> (yeni sekmede açılır)</span></a>.
+				</>
+			)}
+		</p>
+	</article>
+	{blocks.length > 0 && <PageBlocks value={blocks} />}
+	{
+		related.length > 0 && (
+			<section class="news-list news-related" aria-labelledby="ilgili">
+				<h2 class="t-heading" id="ilgili">İlgili haberler</h2>
+				{related.map((n) => <NewsCard item={n} level="h3" />)}
+			</section>
+		)
+	}
+</Base>

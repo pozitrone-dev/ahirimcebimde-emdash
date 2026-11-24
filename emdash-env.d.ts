@@ -5,6 +5,24 @@
 
 import type { BylineSummary, ContentBylineCredit, TaxonomyTerm, PortableTextBlock } from "emdash";
 
+export interface Haberler {
+  id: string;
+  slug: string | null;
+  status: string;
+  baslik: string;
+  icerik?: PortableTextBlock[];
+  ust_bilgiler?: string;
+  kaynak?: string;
+  kaynak_url?: string;
+  kaynak_tarihi?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 export interface PageBolumlerAcHeroV1Block {
   _type: "ac_hero";
   _version: 1;
@@ -173,6 +191,7 @@ export interface Post {
   ekran_aciklama?: string;
   balon_ust?: string;
   balon?: string;
+  gozden_geciren?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -183,6 +202,7 @@ export interface Post {
 
 declare module "emdash" {
   interface EmDashCollections {
+    haberler: Haberler;
     pages: Page;
     posts: Post;
   }

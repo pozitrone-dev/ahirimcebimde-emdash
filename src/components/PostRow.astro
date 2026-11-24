@@ -1,6 +1,6 @@
 ---
 import PostVisual from "./PostVisual.astro";
-import { CATEGORY_STYLE } from "../lib/site";
+import { CATEGORY_STYLE, blogUrl } from "../lib/site";
 
 interface Props {
 	post: any;
@@ -9,7 +9,7 @@ interface Props {
 	anchor?: string;
 }
 const { post, category, hidden = false, anchor } = Astro.props;
-const href = `/posts/${post.id}`;
+const href = blogUrl(post.id);
 const eyebrow =
 	CATEGORY_STYLE[category?.slug ?? ""]?.label ?? category?.label ?? "Blog";
 ---

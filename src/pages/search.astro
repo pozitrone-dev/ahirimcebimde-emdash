@@ -16,7 +16,7 @@ if (query) {
 	}
 }
 const rows = res.items.map((r: any) => ({
-	path: r.collection === "pages" ? `/${r.slug ?? r.id}` : `/posts/${r.slug ?? r.id}`,
+	path: r.collection === "pages" ? `/${r.slug ?? r.id}` : r.collection === "haberler" ? `/haberler/${r.slug ?? r.id}/` : `/blog/${r.slug ?? r.id}/`,
 	title: r.title ?? "Başlıksız",
 	snippet: r.snippet,
 }));
@@ -37,7 +37,7 @@ const rows = res.items.map((r: any) => ({
 				{unavailable ? (
 					<p class="t-intro">Arama şu an kullanılamıyor. Lütfen daha sonra yeniden deneyin.</p>
 				) : rows.length === 0 ? (
-					<p class="t-intro">“{query}” için sonuç bulunamadı. <a class="link-text" href="/posts">Tüm yazılara</a> göz atın.</p>
+					<p class="t-intro">“{query}” için sonuç bulunamadı. <a class="link-text" href="/blog/">Tüm yazılara</a> göz atın.</p>
 				) : (
 					<>
 						<h2 class="t-heading-small">{rows.length} sonuç</h2>

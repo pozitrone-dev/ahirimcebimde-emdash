@@ -2,14 +2,18 @@
 import { getEmDashEntry, getSeoMeta, decodeSlug } from "emdash";
 import Base from "../layouts/Base.astro";
 import PageView from "../components/PageView.astro";
-import { HOME_SLUG, SITE_NAME } from "../lib/site";
+import { HOME_SLUG, LEGACY_REDIRECTS, SITE_NAME } from "../lib/site";
 
 const slug = decodeSlug(Astro.params.slug);
 if (!slug) return Astro.rewrite("/404");
 if (slug === HOME_SLUG) return Astro.redirect(`/${Astro.url.search}`, 301);
 
 const { entry: page, cacheHint } = await getEmDashEntry("pages", slug);
-if (!page) return Astro.rewrite("/404");
+if (!page) {
+	const legacy = LEGACY_REDIRECTS[slug];
+	if (legacy) return Astro.redirect(legacy, 301);
+	return Astro.rewrite("/404");
+}
 if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
 
 const seo = getSeoMeta(page, {

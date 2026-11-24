@@ -1,0 +1,6 @@
+---
+// Blog moved to "/blog/{slug}/" (the old ahirimcebimde.com address). Keep
+// /posts links working.
+const rest = Astro.params.slug ?? "";
+return Astro.redirect(rest ? `/blog/${rest}/${Astro.url.search}` : `/blog/${Astro.url.search}`, 301);
+---

@@ -59,8 +59,9 @@ export const FALLBACK_PRIMARY = toMenu([
 				label: "Kaynaklar",
 				url: "#",
 				children: [
-					{ label: "Blog", url: "/posts" },
-					{ label: "Rehber yazıları", url: "/posts#rehber" },
+					{ label: "Blog", url: "/blog/" },
+					{ label: "Rehber yazıları", url: "/blog/#rehber" },
+					{ label: "Haberler", url: "/haberler/" },
 					{ label: "Sık sorulan sorular", url: "/sss" },
 					{ label: "Yardım ve destek", url: "/destek" },
 				],
@@ -78,7 +79,8 @@ export const FALLBACK_PRIMARY = toMenu([
 		],
 	},
 	{ label: "Veteriner", url: "/#veteriner" },
-	{ label: "Blog", url: "/posts" },
+	{ label: "Blog", url: "/blog/" },
+	{ label: "Haberler", url: "/haberler/" },
 ]);
 
 export const FALLBACK_FOOTER = toMenu([
@@ -97,8 +99,9 @@ export const FALLBACK_FOOTER = toMenu([
 		label: "Kaynaklar",
 		url: "#",
 		children: [
-			{ label: "Blog", url: "/posts" },
-			{ label: "Rehber yazıları", url: "/posts#rehber" },
+			{ label: "Blog", url: "/blog/" },
+			{ label: "Rehber yazıları", url: "/blog/#rehber" },
+			{ label: "Haberler", url: "/haberler/" },
 			{ label: "Sık sorulan sorular", url: "/sss" },
 			{ label: "Yardım ve destek", url: "/destek" },
 			{ label: "Veteriner Hekime Sor", url: "/#veteriner" },
@@ -171,3 +174,47 @@ export function formatPostDate(d: Date | string | null | undefined) {
 
 /** The page entry rendered at "/". */
 export const HOME_SLUG = "anasayfa";
+
+/**
+ * Old ahirimcebimde.com addresses that no longer have their own page.
+ * Kept as 301 redirects so links from search results still land somewhere
+ * useful. Blog and news keep their exact old URLs and are not listed here.
+ */
+export const LEGACY_REDIRECTS: Record<string, string> = {
+	"hesap-silme": "/hesap-sil",
+	fiyatlar: "/",
+	ozellikler: "/#ozellikler",
+};
+
+/** Redirect target when a blog or news URL is missing its trailing slash. */
+export function needsSlash(url: URL) {
+	return url.pathname.endsWith("/") ? null : `${url.pathname}/${url.search}`;
+}
+
+export const blogUrl = (slug: string) => `/blog/${slug}/`;
+export const newsUrl = (slug: string) => `/haberler/${slug}/`;
+export const categoryUrl = (slug: string) => `/blog/kategori/${slug}/`;
+
+/** "24 Eki 2026" style dates, as on the old site. */
+export function formatTrDate(d: Date | string) {
+	return new Date(d).toLocaleDateString("tr-TR", {
+		day: "numeric",
+		month: "short",
+		year: "numeric",
+		timeZone: "Europe/Istanbul",
+	});
+}
+
+/** News entries use "baslik" for the title (fields created in the admin). */
+export const newsTitle = (d: any): string => d?.baslik ?? d?.title ?? "";
+
+/** Plain text of a Portable Text value, for summaries and meta descriptions. */
+export function ptText(value: unknown): string {
+	if (typeof value === "string") return value;
+	if (!Array.isArray(value)) return "";
+	return value
+		.filter((b: any) => b?._type === "block")
+		.map((b: any) => (b.children ?? []).map((c: any) => c.text ?? "").join(""))
+		.join("\n\n")
+		.trim();
+}

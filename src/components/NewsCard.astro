@@ -1,0 +1,34 @@
+---
+import { formatTrDate, newsTitle, newsUrl, ptText } from "../lib/site";
+
+interface Props {
+	item: any;
+	level?: "h2" | "h3";
+}
+const { item, level = "h2" } = Astro.props;
+const d = item.data;
+const Heading = level;
+const published = d.publishedAt ?? null;
+const summary = ptText(d.icerik);
+---
+
+<article class="news-card">
+	{d.kaynak && <span class="news-src">Kaynak: {d.kaynak}</span>}
+	<Heading class="t-heading-small"><a href={newsUrl(item.id)}>{newsTitle(d)}</a></Heading>
+	{summary && <p>{summary.length > 320 ? `${summary.slice(0, 317).trimEnd()}...` : summary}</p>}
+	<div class="news-foot">
+		<p>
+			{published && <time datetime={new Date(published).toISOString()}>{formatTrDate(published)}</time>}
+			{d.kaynak_tarihi && (
+				<>
+					{" · "}Kaynak tarihi: <time datetime={new Date(d.kaynak_tarihi).toISOString()}>{formatTrDate(d.kaynak_tarihi)}</time>
+				</>
+			)}
+		</p>
+		{d.kaynak_url && (
+			<a class="link-text" href={d.kaynak_url} target="_blank" rel="noopener">
+				Kaynağa git<span class="sr-only"> (yeni sekmede açılır)</span>
+			</a>
+		)}
+	</div>
+</article>

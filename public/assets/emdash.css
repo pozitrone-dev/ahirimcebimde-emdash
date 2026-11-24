@@ -30,3 +30,29 @@
 .cards3 + .text-block,.faq-block + .text-block{margin-top:-80px}
 .block-empty{text-align:center;padding:120px 20px}
 .faq-block + .text-block{max-width:1320px;padding-left:20px;padding-right:20px;margin-top:-80px}
+/* Blog post meta (category, author, reviewer) */
+.post-cat{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;background:var(--color-panel);border:1px solid var(--color-edge);font:600 13px/1 var(--font-display);text-decoration:none;color:var(--color-ink);transition:all .2s var(--ease)}
+a.post-cat:hover{color:var(--color-green)}
+.post-byline{text-align:center;font:400 15px/1.6 var(--font-text);color:var(--color-body);margin-top:-8px}
+.post-byline b{font-weight:600;color:var(--color-ink)}
+.post-byline .muted{color:var(--color-muted)}
+/* News */
+.news-list{max-width:808px;margin:0 auto;padding:0 20px 120px;display:flex;flex-direction:column;gap:16px}
+.news-related{padding-top:0}
+.news-related h2{margin:16px 0 16px}
+.news-card{background:#fff;border:1px solid rgba(20,20,20,.15);border-radius:10px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.news-card h2,.news-card h3{font:600 22px/1.25 var(--font-display);letter-spacing:-.02em}
+.news-card h2 a,.news-card h3 a{text-decoration:none;transition:all .2s var(--ease)}
+.news-card h2 a:hover,.news-card h3 a:hover{color:var(--color-green)}
+.news-card > p{font:400 16px/1.5 var(--font-text);color:var(--color-body)}
+.news-src{align-self:flex-start;padding:4px 12px;border-radius:999px;background:var(--color-panel);border:1px solid var(--color-edge);font:600 12px/1.3 var(--font-display)}
+.news-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.news-foot p{font:400 14px/1.4 var(--font-text);color:var(--color-muted)}
+.news-body{padding-top:40px}
+.news-meta{background:var(--color-panel);border:1px solid var(--color-edge);border-left:4px solid var(--color-green);border-radius:10px;padding:24px;margin-bottom:32px}
+.news-meta ul{list-style:none!important;padding:0!important;margin:0 0 16px!important}
+.news-meta li{font:400 16px/1.5 var(--font-text)!important;color:var(--color-body);margin-bottom:4px!important}
+.news-meta b{font-weight:600;color:var(--color-ink)}
+.news-meta .btn-primary{min-width:0;padding:12px 28px;font-size:16px;text-decoration:none!important;color:#fff!important}
+.news-note{font:400 15px/1.6 var(--font-text)!important;color:var(--color-muted);margin-top:32px!important}
+@media (max-width:767px){.news-card{padding:20px}}

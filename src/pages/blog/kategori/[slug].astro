@@ -1,0 +1,46 @@
+---
+import {
+	getTaxonomyTermsWithCacheHint,
+	getEmDashCollection,
+	getTermsForEntries,
+	decodeSlug,
+} from "emdash";
+import Base from "../../../layouts/Base.astro";
+import PostRow from "../../../components/PostRow.astro";
+import { categoryUrl, needsSlash } from "../../../lib/site";
+
+const fix = needsSlash(Astro.url);
+if (fix) return Astro.redirect(fix, 301);
+
+const slug = decodeSlug(Astro.params.slug);
+const termsResult = await getTaxonomyTermsWithCacheHint("category", { includeCounts: false });
+const term = slug ? termsResult.data.find((t) => t.slug === slug) : null;
+if (!term) return Astro.rewrite("/404");
+
+const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
+	where: { category: term.slug },
+	orderBy: { published_at: "desc" },
+	limit: 100,
+});
+if (Astro.cache?.enabled) {
+	Astro.cache.set(termsResult.cacheHint);
+	Astro.cache.set(cacheHint);
+}
+const cats = await getTermsForEntries("posts", posts.map((p) => p.data.id), "category");
+---
+
+<Base
+	title={`${term.label}: Blog Yazıları`}
+	description={`${term.label} konusunda kaynaklı yazılar.`}
+	canonical={new URL(categoryUrl(term.slug), Astro.url.origin).href}
+>
+	<section class="page-head">
+		<span class="eyebrow">Kategori</span>
+		<h1 class="t-display">{term.label}</h1>
+		<p class="t-intro"><a class="link-text" href="/blog/">Tüm yazılar</a></p>
+	</section>
+	<section class="posts">
+		{posts.length === 0 && <p class="t-intro" style="text-align:center">Bu başlıkta henüz yazı yok.</p>}
+		{posts.map((post) => <PostRow post={post} category={cats.get(post.data.id)?.[0] ?? null} />)}
+	</section>
+</Base>
