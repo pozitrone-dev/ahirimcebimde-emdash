@@ -1,0 +1,18 @@
+---
+import { PLUS } from "../../lib/art";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const items: any[] = v.items ?? [];
+---
+
+<section class="faq faq-block" id={v.anchor_id || undefined}>
+	{v.headline && <h2 class="t-heading-small">{v.headline}</h2>}
+	{
+		items.map((q) => (
+			<div class="faq-row">
+				<button aria-expanded="false">{q.question}<Fragment set:html={PLUS} /></button>
+				<div class="faq-a"><div>{(q.answer ?? "").split(/\n{2,}/).map((p: string) => <p>{p}</p>)}</div></div>
+			</div>
+		))
+	}
+</section>

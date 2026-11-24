@@ -1,0 +1,19 @@
+---
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const screens: string[] = (Array.isArray(v.screens) && v.screens.length ? v.screens : ["saglik", "suru", "kayit", "besi", "pano"]).slice(0, 5);
+const pos = ["left:calc(50% - 545px);top:70px", "left:calc(50% - 325px);top:36px", "left:calc(50% - 105px);top:0;z-index:2", "left:calc(50% + 115px);top:36px", "left:calc(50% + 335px);top:70px"];
+// Centre the given screens on the middle slot.
+const offset = Math.floor((5 - screens.length) / 2);
+---
+
+<section class="invite" id={v.anchor_id || undefined}>
+	<div class="invite-copy">
+		<h2 class="t-heading">{v.headline}</h2>
+		{v.body && <p class="t-support">{v.body}</p>}
+		{v.button_label && <a class="btn btn-compact" href={v.button_url || "#"}>{v.button_label}</a>}
+	</div>
+	<div class="invite-strip" aria-label="Uygulamadan ekranlar">
+		{screens.map((s, i) => <figure class="screen" style={pos[i + offset]}><img src={`/assets/ekranlar/${s}.webp`} alt="" loading="lazy" /></figure>)}
+	</div>
+</section>

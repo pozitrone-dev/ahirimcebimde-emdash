@@ -1,0 +1,9 @@
+---
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const items: any[] = v.items ?? [];
+---
+
+<section class="about-stats" id={v.anchor_id || undefined}>
+	{items.map((s) => <div><b>{s.value}</b><span>{s.label}</span></div>)}
+</section>

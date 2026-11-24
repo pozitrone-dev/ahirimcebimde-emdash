@@ -1,0 +1,51 @@
+---
+import { getEmDashEntry, getSeoMeta, decodeSlug } from "emdash";
+import Base from "../layouts/Base.astro";
+import PageView from "../components/PageView.astro";
+import { HOME_SLUG, SITE_NAME } from "../lib/site";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+if (slug === HOME_SLUG) return Astro.redirect(`/${Astro.url.search}`, 301);
+
+const { entry: page, cacheHint } = await getEmDashEntry("pages", slug);
+if (!page) return Astro.rewrite("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const seo = getSeoMeta(page, {
+	siteTitle: SITE_NAME,
+	siteUrl: Astro.url.origin,
+	path: `/${page.id}`,
+});
+const hasBlocks = ((page.data as any).bolumler ?? []).length > 0;
+---
+
+<Base
+	title={seo.title}
+	pageTitle={seo.ogTitle}
+	description={seo.description}
+	canonical={seo.canonical}
+	robots={seo.robots}
+	content={{ collection: "pages", id: page.data.id, slug }}
+>
+	<PageView page={page} />
+	{hasBlocks && <script is:inline slot="scripts" src="/assets/blocks.js"></script>}
+	{
+		!hasBlocks && (
+			<script is:inline slot="scripts">
+				(function () {
+					var map = { ç: "c", ğ: "g", ı: "i", İ: "i", ö: "o", ş: "s", ü: "u" };
+					var used = {};
+					document.querySelectorAll(".post-body.pt h2").forEach(function (h) {
+						if (h.id) return;
+						var w = h.textContent.replace(/^\s*[\dA-Z]{1,3}\.\s*/, "").trim().split(/\s+/)[0] || "bolum";
+						var id = w.toLocaleLowerCase("tr").replace(/[çğıİöşü]/g, function (c) { return map[c] || c; }).replace(/[^a-z0-9-]/g, "");
+						if (used[id]) id += "-" + ++used[id]; else used[id] = 1;
+						h.id = id;
+					});
+					if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+				})();
+			</script>
+		)
+	}
+</Base>

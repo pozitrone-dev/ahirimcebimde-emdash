@@ -1,0 +1,10 @@
+---
+import { PortableText } from "emdash/ui";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+---
+
+<section class="page-head">
+	<h1 class="t-display">{v.headline}</h1>
+	{v.intro?.length > 0 && <div class="t-intro pt-intro"><PortableText value={v.intro} /></div>}
+</section>

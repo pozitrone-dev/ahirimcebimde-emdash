@@ -1,0 +1,26 @@
+---
+import { CARD_PICS } from "../../lib/art";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const items: any[] = v.items ?? [];
+---
+
+<section class="cards3" id={v.anchor_id || undefined}>
+	{
+		items.map((c) => (
+			<article class="ccard">
+				<Fragment set:html={CARD_PICS[c.icon] ?? CARD_PICS.kitap} />
+				<h3 class="t-card-heading">{c.title}</h3>
+				<p>{c.description}</p>
+				{c.button2_label ? (
+					<div style="display:flex;flex-direction:column;gap:12px">
+						<a class:list={["btn", c.filled ? "btn-compact" : "btn-outline"]} href={c.button_url || "#"}>{c.button_label}</a>
+						<a class="btn btn-outline" href={c.button2_url || "#"}>{c.button2_label}</a>
+					</div>
+				) : (
+					c.button_label && <a class:list={["btn", c.filled ? "btn-compact" : "btn-outline"]} href={c.button_url || "#"}>{c.button_label}</a>
+				)}
+			</article>
+		))
+	}
+</section>

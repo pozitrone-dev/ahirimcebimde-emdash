@@ -1,0 +1,44 @@
+---
+/**
+ * Renders a page entry. Pages with blocks ("Bölümler") are built from the
+ * Ahırım Cebimde block components; pages without blocks use the long-form
+ * text layout (legal pages).
+ */
+import { PortableText } from "emdash/ui";
+import PageBlocks from "./PageBlocks.astro";
+
+const { page } = Astro.props as { page: any };
+const blocks: any[] = page.data.bolumler ?? [];
+const content: any[] = page.data.content ?? [];
+const meta = page.data.ust_bilgi as string | undefined;
+---
+
+{
+	blocks.length > 0 ? (
+		<div {...page.edit.bolumler}>
+			<PageBlocks value={blocks} />
+		</div>
+	) : (
+		<>
+			<div class="post-top">
+				<h1 class="t-heading post-title" {...page.edit.title}>{page.data.title}</h1>
+				{meta && (
+					<p class="post-body meta" style="padding:0">
+						{meta.split("\n").map((line, i) => (<>{i > 0 && <br />}{line}</>))}
+					</p>
+				)}
+			</div>
+			{content.length > 0 ? (
+				<article class="post-body pt" {...page.edit.content}>
+					<PortableText value={content} />
+				</article>
+			) : (
+				Astro.locals.user && (
+					<p class="block-empty">
+						Bu sayfa boş. <a class="link-text" href={`/_emdash/admin/content/pages/${page.data.id}`}>Bölüm ekleyin</a>.
+					</p>
+				)
+			)}
+		</>
+	)
+}

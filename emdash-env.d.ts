@@ -5,6 +5,146 @@
 
 import type { BylineSummary, ContentBylineCredit, TaxonomyTerm, PortableTextBlock } from "emdash";
 
+export interface PageBolumlerAcHeroV1Block {
+  _type: "ac_hero";
+  _version: 1;
+  _key: string;
+  "headline": string;
+  "intro"?: string | null;
+  "button_label"?: string | null;
+  "button_url"?: string | null;
+  "login_text"?: string | null;
+  "login_label"?: string | null;
+  "login_url"?: string | null;
+}
+
+export type PageBolumlerAcHeroBlock = PageBolumlerAcHeroV1Block;
+
+export interface PageBolumlerAcFeaturesV1Block {
+  _type: "ac_features";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "headline"?: string | null;
+  "intro"?: string | null;
+  "items"?: { "title": string; "description"?: string | null; "icon"?: "suru" | "sut" | "ureme" | "saglik" | "besleme" | "besi" | "finans" | "rapor" | "topluluk" | "rehber" | null }[] | null;
+}
+
+export type PageBolumlerAcFeaturesBlock = PageBolumlerAcFeaturesV1Block;
+
+export interface PageBolumlerAcAnnounceV1Block {
+  _type: "ac_announce";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "headline": string;
+  "body"?: string | null;
+  "button_label"?: string | null;
+  "button_url"?: string | null;
+}
+
+export type PageBolumlerAcAnnounceBlock = PageBolumlerAcAnnounceV1Block;
+
+export interface PageBolumlerAcChapterV1Block {
+  _type: "ac_chapter";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "marker"?: string | null;
+  "color"?: "pembe" | "turuncu" | "sari" | "yesil" | null;
+  "headline": string;
+  "body"?: string | null;
+  "button_label"?: string | null;
+  "button_url"?: string | null;
+  "flip"?: boolean | null;
+  "shape"?: "arti" | "daireler" | "gunes" | "dalga" | null;
+  "screens"?: ("pano" | "kayit" | "suru" | "hayvan" | "ureme" | "sut" | "saglik" | "besleme" | "besi" | "gelir-gider")[] | null;
+  "screens_alt"?: string | null;
+  "image"?: { id: string; src?: string; alt?: string; caption?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; caption?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } } | null;
+  "chips"?: { "label"?: string | null; "value": string; "note"?: string | null }[] | null;
+}
+
+export type PageBolumlerAcChapterBlock = PageBolumlerAcChapterV1Block;
+
+export interface PageBolumlerAcInviteV1Block {
+  _type: "ac_invite";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "headline": string;
+  "body"?: string | null;
+  "button_label"?: string | null;
+  "button_url"?: string | null;
+  "screens"?: ("pano" | "kayit" | "suru" | "hayvan" | "ureme" | "sut" | "saglik" | "besleme" | "besi" | "gelir-gider")[] | null;
+}
+
+export type PageBolumlerAcInviteBlock = PageBolumlerAcInviteV1Block;
+
+export interface PageBolumlerAcAccessV1Block {
+  _type: "ac_access";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "headline"?: string | null;
+  "items"?: { "title": string; "description"?: string | null; "kind"?: "apple" | "android" | "web" | null; "button_label"?: string | null; "button_url"?: string | null }[] | null;
+}
+
+export type PageBolumlerAcAccessBlock = PageBolumlerAcAccessV1Block;
+
+export interface PageBolumlerAcPageHeadV1Block {
+  _type: "ac_page_head";
+  _version: 1;
+  _key: string;
+  "headline": string;
+  "intro"?: PortableTextBlock[] | null;
+}
+
+export type PageBolumlerAcPageHeadBlock = PageBolumlerAcPageHeadV1Block;
+
+export interface PageBolumlerAcFaqV1Block {
+  _type: "ac_faq";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "headline"?: string | null;
+  "items"?: { "question": string; "answer"?: string | null }[] | null;
+}
+
+export type PageBolumlerAcFaqBlock = PageBolumlerAcFaqV1Block;
+
+export interface PageBolumlerAcCardsV1Block {
+  _type: "ac_cards";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "items"?: { "title": string; "description"?: string | null; "icon"?: "telefon" | "eposta" | "sohbet" | "kitap" | null; "button_label"?: string | null; "button_url"?: string | null; "button2_label"?: string | null; "button2_url"?: string | null; "filled"?: boolean | null }[] | null;
+}
+
+export type PageBolumlerAcCardsBlock = PageBolumlerAcCardsV1Block;
+
+export interface PageBolumlerAcStatsV1Block {
+  _type: "ac_stats";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "items"?: { "value": string; "label"?: string | null }[] | null;
+}
+
+export type PageBolumlerAcStatsBlock = PageBolumlerAcStatsV1Block;
+
+export interface PageBolumlerAcTextV1Block {
+  _type: "ac_text";
+  _version: 1;
+  _key: string;
+  "anchor_id"?: string | null;
+  "body": PortableTextBlock[];
+  "align"?: "sol" | "orta" | null;
+}
+
+export type PageBolumlerAcTextBlock = PageBolumlerAcTextV1Block;
+
+export type PageBolumlerBlock = PageBolumlerAcHeroBlock | PageBolumlerAcFeaturesBlock | PageBolumlerAcAnnounceBlock | PageBolumlerAcChapterBlock | PageBolumlerAcInviteBlock | PageBolumlerAcAccessBlock | PageBolumlerAcPageHeadBlock | PageBolumlerAcFaqBlock | PageBolumlerAcCardsBlock | PageBolumlerAcStatsBlock | PageBolumlerAcTextBlock;
+
 export interface Page {
   id: string;
   slug: string | null;
@@ -12,6 +152,7 @@ export interface Page {
   title: string;
   content?: PortableTextBlock[];
   ust_bilgi?: string;
+  bolumler?: PageBolumlerBlock[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

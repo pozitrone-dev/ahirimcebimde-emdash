@@ -1,0 +1,86 @@
+[
+ {"slug":"ac_hero","label":"Giriş (ürün sahnesi)","description":"Büyük başlık, açıklama, düğme ve animasyonlu uygulama ekranları","icon":"sparkle","category":"Ahırım Cebimde","fields":[
+  {"slug":"headline","label":"Başlık","type":"string","required":true},
+  {"slug":"intro","label":"Açıklama","type":"text"},
+  {"slug":"button_label","label":"Düğme metni","type":"string"},
+  {"slug":"button_url","label":"Düğme bağlantısı","type":"url"},
+  {"slug":"login_text","label":"Alt satır metni","type":"string"},
+  {"slug":"login_label","label":"Alt satır bağlantı metni","type":"string"},
+  {"slug":"login_url","label":"Alt satır bağlantısı","type":"url"}]},
+ {"slug":"ac_features","label":"Özellik kartları (kaydırmalı)","description":"Başlık ve sonsuz kaydırılan özellik kartları","icon":"cards","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"headline","label":"Başlık","type":"string"},
+  {"slug":"intro","label":"Açıklama","type":"text"},
+  {"slug":"items","label":"Kartlar","type":"repeater","validation":{"subFields":[
+    {"slug":"title","label":"Başlık","type":"string","required":true},
+    {"slug":"description","label":"Açıklama","type":"text"},
+    {"slug":"icon","label":"Simge","type":"select","options":["suru","sut","ureme","saglik","besleme","besi","finans","rapor","topluluk","rehber"]}]}}]},
+ {"slug":"ac_announce","label":"Koyu duyuru bandı","description":"Renkli ışıklı koyu bant, başlık ve düğme","icon":"megaphone","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"headline","label":"Başlık","type":"string","required":true},
+  {"slug":"body","label":"Metin","type":"text"},
+  {"slug":"button_label","label":"Düğme metni","type":"string"},
+  {"slug":"button_url","label":"Düğme bağlantısı","type":"url"}]},
+ {"slug":"ac_chapter","label":"Ekranlı bölüm","description":"Bir tarafta uygulama ekranları ve bilgi kartları, diğer tarafta metin","icon":"device-mobile","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"marker","label":"Etiket","type":"string"},
+  {"slug":"color","label":"Renk","type":"select","validation":{"options":["pembe","turuncu","sari","yesil"]}},
+  {"slug":"headline","label":"Başlık","type":"string","required":true},
+  {"slug":"body","label":"Metin","type":"text"},
+  {"slug":"button_label","label":"Düğme metni","type":"string"},
+  {"slug":"button_url","label":"Düğme bağlantısı","type":"url"},
+  {"slug":"flip","label":"Görseli sağa al","type":"boolean"},
+  {"slug":"shape","label":"Arka plan şekli","type":"select","validation":{"options":["arti","daireler","gunes","dalga"]}},
+  {"slug":"screens","label":"Ekranlar (en fazla 2)","type":"multiSelect","validation":{"options":["pano","kayit","suru","hayvan","ureme","sut","saglik","besleme","besi","gelir-gider"]}},
+  {"slug":"screens_alt","label":"Ekran açıklaması","type":"string"},
+  {"slug":"image","label":"Özel görsel (ekran yerine)","type":"image"},
+  {"slug":"chips","label":"Bilgi kartları (en fazla 2)","type":"repeater","validation":{"maxItems":2,"subFields":[
+    {"slug":"label","label":"Üst yazı","type":"string"},
+    {"slug":"value","label":"Değer","type":"string","required":true},
+    {"slug":"note","label":"Not","type":"string"}]}}]},
+ {"slug":"ac_invite","label":"Davet bandı","description":"Başlık, metin, düğme ve yan yana beş ekran","icon":"rows","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"headline","label":"Başlık","type":"string","required":true},
+  {"slug":"body","label":"Metin","type":"text"},
+  {"slug":"button_label","label":"Düğme metni","type":"string"},
+  {"slug":"button_url","label":"Düğme bağlantısı","type":"url"},
+  {"slug":"screens","label":"Ekranlar (5 adet)","type":"multiSelect","validation":{"options":["pano","kayit","suru","hayvan","ureme","sut","saglik","besleme","besi","gelir-gider"]}}]},
+ {"slug":"ac_access","label":"İndirme kartları","description":"Platform kartları ve mağaza düğmeleri","icon":"download-simple","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"headline","label":"Başlık","type":"string"},
+  {"slug":"items","label":"Kartlar","type":"repeater","validation":{"subFields":[
+    {"slug":"title","label":"Başlık","type":"string","required":true},
+    {"slug":"description","label":"Açıklama","type":"text"},
+    {"slug":"kind","label":"Tür","type":"select","options":["apple","android","web"]},
+    {"slug":"button_label","label":"Düğme metni","type":"string"},
+    {"slug":"button_url","label":"Düğme bağlantısı","type":"url"}]}}]},
+ {"slug":"ac_page_head","label":"Sayfa başlığı","description":"Ortalanmış büyük başlık ve giriş metni","icon":"text-h-one","category":"Ahırım Cebimde","fields":[
+  {"slug":"headline","label":"Başlık","type":"string","required":true},
+  {"slug":"intro","label":"Giriş metni","type":"portableText"}]},
+ {"slug":"ac_faq","label":"Soru ve cevaplar","description":"Açılır soru satırları","icon":"question","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"headline","label":"Grup başlığı","type":"string"},
+  {"slug":"items","label":"Sorular","type":"repeater","validation":{"subFields":[
+    {"slug":"question","label":"Soru","type":"string","required":true},
+    {"slug":"answer","label":"Cevap","type":"text"}]}}]},
+ {"slug":"ac_cards","label":"Üçlü kartlar","description":"Simgeli kartlar ve düğmeler","icon":"squares-four","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"items","label":"Kartlar","type":"repeater","validation":{"subFields":[
+    {"slug":"title","label":"Başlık","type":"string","required":true},
+    {"slug":"description","label":"Açıklama","type":"text"},
+    {"slug":"icon","label":"Simge","type":"select","options":["telefon","eposta","sohbet","kitap"]},
+    {"slug":"button_label","label":"Düğme metni","type":"string"},
+    {"slug":"button_url","label":"Düğme bağlantısı","type":"url"},
+    {"slug":"button2_label","label":"İkinci düğme metni","type":"string"},
+    {"slug":"button2_url","label":"İkinci düğme bağlantısı","type":"url"},
+    {"slug":"filled","label":"Dolu düğme","type":"boolean"}]}}]},
+ {"slug":"ac_stats","label":"Rakam kutuları","description":"Büyük rakam ve kısa açıklama kutuları","icon":"chart-bar","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"items","label":"Kutular","type":"repeater","validation":{"subFields":[
+    {"slug":"value","label":"Rakam","type":"string","required":true},
+    {"slug":"label","label":"Açıklama","type":"string"}]}}]},
+ {"slug":"ac_text","label":"Serbest metin","description":"Başlık, paragraf ve liste içeren düz metin","icon":"article","category":"Ahırım Cebimde","fields":[
+  {"slug":"anchor_id","label":"Bölüm kimliği","type":"string"},
+  {"slug":"body","label":"Metin","type":"portableText","required":true},
+  {"slug":"align","label":"Hizalama","type":"select","validation":{"options":["sol","orta"]}}]}
+]

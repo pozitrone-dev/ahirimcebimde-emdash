@@ -124,11 +124,11 @@ export const FALLBACK_FOOTER = toMenu([
 ]);
 
 export const FALLBACK_LEGAL = toMenu([
-	{ label: "Gizlilik", url: "/pages/gizlilik" },
-	{ label: "KVKK haklarınız", url: "/pages/gizlilik#haklariniz" },
-	{ label: "Kullanım koşulları", url: "/pages/kullanim-kosullari" },
-	{ label: "Çerezler", url: "/pages/cerezler" },
-	{ label: "Hesap silme", url: "/pages/hesap-sil" },
+	{ label: "Gizlilik", url: "/gizlilik" },
+	{ label: "KVKK haklarınız", url: "/gizlilik#haklariniz" },
+	{ label: "Kullanım koşulları", url: "/kullanim-kosullari" },
+	{ label: "Çerezler", url: "/cerezler" },
+	{ label: "Hesap silme", url: "/hesap-sil" },
 ]);
 
 export function pick(items: MenuItem[] | undefined, fallback: MenuItem[]) {
@@ -168,3 +168,6 @@ export function formatPostDate(d: Date | string | null | undefined) {
 	const day = String(date.getDate()).padStart(2, "0");
 	return `${y}/${m}/${day}`;
 }
+
+/** The page entry rendered at "/". */
+export const HOME_SLUG = "anasayfa";

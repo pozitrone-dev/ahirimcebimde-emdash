@@ -19,3 +19,14 @@
 .search-row p{font:400 16px/1.5 var(--font-text);color:var(--color-body);margin-top:8px}
 .search-row mark{background:#ffe98a;color:inherit}
 .post-top > .meta{max-width:808px;margin:0 auto;padding:0 20px!important;text-align:center;font:400 15px/1.6 var(--font-text);color:var(--color-muted)}
+/* Page blocks */
+.pt-intro p{margin:0}
+.pt-intro a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;transition:all .2s var(--ease-out)}
+.pt-intro a:hover{color:var(--color-green);text-decoration-line:none}
+.faq-block + .faq-block h2{margin-top:40px}
+.faq-block + .faq-block{padding-top:0}
+.text-block{padding-top:0}
+.text-block.is-center{text-align:center}
+.cards3 + .text-block,.faq-block + .text-block{margin-top:-80px}
+.block-empty{text-align:center;padding:120px 20px}
+.faq-block + .text-block{max-width:1320px;padding-left:20px;padding-right:20px;margin-top:-80px}

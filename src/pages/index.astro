@@ -1,12 +1,31 @@
 ---
+import { getEmDashEntry, getSeoMeta } from "emdash";
 import Base from "../layouts/Base.astro";
-import home from "../fragments/index.html?raw";
+import PageView from "../components/PageView.astro";
+import { HOME_SLUG, SITE_NAME } from "../lib/site";
+
+const { entry: page, cacheHint } = await getEmDashEntry("pages", HOME_SLUG);
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+const seo = page
+	? getSeoMeta(page, { siteTitle: SITE_NAME, siteUrl: Astro.url.origin, path: "/" })
+	: null;
 ---
 
 <Base
 	title="Ahırım Cebimde · Sürü yönetimi cebinizde"
-	description="Süt ve besi çiftlikleri için sürü yönetimi uygulaması. Hayvan, süt, üreme, sağlık, yem ve gelir-gider kayıtları tek yerde. iPhone, Android ve web."
-	inner={false}
+	description={seo?.description ?? "Süt ve besi çiftlikleri için sürü yönetimi uygulaması. Hayvan, süt, üreme, sağlık, yem ve gelir-gider kayıtları tek yerde. iPhone, Android ve web."}
+	canonical={seo?.canonical}
+	content={page ? { collection: "pages", id: page.data.id, slug: HOME_SLUG } : undefined}
 >
-	<Fragment set:html={home} />
+	{
+		page ? (
+			<PageView page={page} />
+		) : (
+			<section class="page-head block-empty">
+				<h1 class="t-display">Ahırım Cebimde</h1>
+				<p class="t-intro">Ana sayfa için "{HOME_SLUG}" adresli bir sayfa oluşturun.</p>
+			</section>
+		)
+	}
+	<script is:inline slot="scripts" src="/assets/blocks.js"></script>
 </Base>

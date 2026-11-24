@@ -1,0 +1,32 @@
+---
+import { ACCESS_PICS, STORE_ICONS } from "../../lib/art";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const items: any[] = v.items ?? [];
+---
+
+<section class="access" id={v.anchor_id || undefined}>
+	{v.headline && <h2 class="t-heading-small">{v.headline}</h2>}
+	<div class="access-grid">
+		{
+			items.map((c) => {
+				const kind = c.kind ?? "web";
+				return (
+					<article class="acard">
+						<Fragment set:html={ACCESS_PICS[kind] ?? ACCESS_PICS.web} />
+						<h3 class="t-card-heading">{c.title}</h3>
+						{c.description && <p>{c.description}</p>}
+						{c.button_label && (
+							<div class="actions">
+								<a class="btn btn-outline" href={c.button_url || "#"}>
+									<Fragment set:html={STORE_ICONS[kind] ?? STORE_ICONS.web} />
+									{kind === "web" ? c.button_label : <span class="store"><small>Şuradan indirin</small><b>{c.button_label}</b></span>}
+								</a>
+							</div>
+						)}
+					</article>
+				);
+			})
+		}
+	</div>
+</section>

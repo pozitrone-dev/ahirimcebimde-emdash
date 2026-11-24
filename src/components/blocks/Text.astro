@@ -1,0 +1,9 @@
+---
+import { PortableText } from "emdash/ui";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+---
+
+<article class:list={["post-body", "pt", "text-block", { "is-center": v.align === "orta" }]} id={v.anchor_id || undefined}>
+	<PortableText value={v.body ?? []} />
+</article>

@@ -1,0 +1,30 @@
+---
+import heroArt from "./HeroArt.html?raw";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+---
+
+<div class="stage-wrap">
+	<section class="stage" aria-labelledby="hero-title">
+		<div class="hero-copy">
+			<h1 class="t-display" id="hero-title">{v.headline}</h1>
+			{v.intro && <p class="t-intro">{v.intro}</p>}
+			{
+				v.button_label && (
+					<div class="hero-cta">
+						<a class="btn btn-primary" href={v.button_url || "#"}>{v.button_label}</a>
+					</div>
+				)
+			}
+			{
+				(v.login_text || v.login_label) && (
+					<p class="login-prompt">
+						{v.login_text}{" "}
+						{v.login_label && <a class="link-anim" href={v.login_url || "#"}>{v.login_label}</a>}
+					</p>
+				)
+			}
+		</div>
+		<Fragment set:html={heroArt} />
+	</section>
+</div>

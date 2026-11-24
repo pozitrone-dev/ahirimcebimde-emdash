@@ -1,0 +1,41 @@
+---
+import { CARD_SHAPES, FEATURE_ICONS } from "../../lib/art";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+const items: any[] = v.items ?? [];
+const A45 = '<svg class="a45" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.1 6.4c0 .4.3.7.7.7h6.7l-10 10a.75.75 0 1 0 1.1 1.1l10-10v6.7a.75.75 0 0 0 1.5 0V6.4a.75.75 0 0 0-.75-.75H8.8a.75.75 0 0 0-.7.75z"/></svg>';
+const ARR = '<svg viewBox="0 0 32 32" fill="currentColor"><path d="M17.49 7.29a1 1 0 0 0 0 1.42L23.79 15H5a1 1 0 1 0 0 2h18.79l-6.3 6.29a1 1 0 1 0 1.42 1.42l8-8a1 1 0 0 0 0-1.42l-8-8a1 1 0 0 0-1.42 0z"/></svg>';
+const id = v.anchor_id || "ozellikler";
+---
+
+<section class="overview" id={id} aria-label={v.headline || "Özellikler"}>
+	{
+		(v.headline || v.intro) && (
+			<div class="overview-head">
+				{v.headline && <h2 class="t-heading">{v.headline}</h2>}
+				{v.intro && <p class="t-intro">{v.intro}</p>}
+			</div>
+		)
+	}
+	<div class="slider" data-slider aria-roledescription="karusel" aria-label="Özellikler">
+		<div class="viewport"><div class="track">
+			{
+				items.map((c, i) => (
+					<a class="fcard" href={`#${id}`}>
+						<svg class="shape" viewBox="0 0 200 200" fill="#f9f6f2" aria-hidden="true" set:html={CARD_SHAPES[i % CARD_SHAPES.length]} />
+						<div class="fc-main">
+							<svg class="pic" viewBox="0 0 56 56" aria-hidden="true" set:html={FEATURE_ICONS[c.icon] ?? FEATURE_ICONS.rehber} />
+							<div class="fc-title"><h3>{c.title}</h3><Fragment set:html={A45} /></div>
+							{c.description && <p>{c.description}</p>}
+						</div>
+						<div class="fc-go" set:html={ARR} />
+					</a>
+				))
+			}
+		</div></div>
+		<div class="slide-ctrl">
+			<button class="arrow prev" aria-label="Önceki" set:html={ARR} />
+			<button class="arrow next" aria-label="Sonraki" set:html={ARR} />
+		</div>
+	</div>
+</section>

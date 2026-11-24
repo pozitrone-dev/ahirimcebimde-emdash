@@ -1,0 +1,15 @@
+---
+import { GLOWS } from "../../lib/art";
+const { value } = Astro.props as { value: any };
+const v = value ?? {};
+---
+
+<section class="announce" id={v.anchor_id || undefined}>
+	<div class="glow l" aria-hidden="true" set:html={GLOWS.l} />
+	<div class="glow r" aria-hidden="true" set:html={GLOWS.r} />
+	<div class="inner">
+		<h2 class="t-heading">{v.headline}</h2>
+		{v.body && <p class="t-support">{v.body}</p>}
+		{v.button_label && <a class="btn btn-lime" href={v.button_url || "#"}>{v.button_label}</a>}
+	</div>
+</section>

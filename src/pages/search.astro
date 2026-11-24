@@ -16,7 +16,7 @@ if (query) {
 	}
 }
 const rows = res.items.map((r: any) => ({
-	path: r.collection === "pages" ? `/pages/${r.slug ?? r.id}` : `/posts/${r.slug ?? r.id}`,
+	path: r.collection === "pages" ? `/${r.slug ?? r.id}` : `/posts/${r.slug ?? r.id}`,
 	title: r.title ?? "Başlıksız",
 	snippet: r.snippet,
 }));

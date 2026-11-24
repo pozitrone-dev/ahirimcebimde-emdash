@@ -1,0 +1,877 @@
+[
+ {
+  "slug": "anasayfa",
+  "title": "Ana sayfa",
+  "seo": {
+   "description": "Süt ve besi çiftlikleri için sürü yönetimi uygulaması. Hayvan, süt, üreme, sağlık, yem ve gelir-gider kayıtları tek yerde."
+  },
+  "bolumler": [
+   {
+    "_type": "ac_hero",
+    "_key": "b001",
+    "headline": "Sürünüz artık cebinizde",
+    "intro": "Hayvan, süt, üreme, sağlık, yem ve gelir-gider kayıtlarınız tek yerde. Telefon, tablet ve bilgisayardan aynı veriyle çalışın.",
+    "button_label": "Hemen başlayın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "login_text": "Hesabınız var mı?",
+    "login_label": "Giriş yapın",
+    "login_url": "https://giris.ahirimcebimde.com/giris"
+   },
+   {
+    "_type": "ac_features",
+    "_key": "b012",
+    "anchor_id": "ozellikler",
+    "headline": "Çiftliğin bütün işi tek yerde",
+    "intro": "Defter, ajanda ve dağınık Excel yerine her kayıt bir dokunuş uzağınızda. Ahırdaki iş ile hesap kitap aynı uygulamada buluşur.",
+    "items": [
+     {
+      "_key": "b002",
+      "title": "Sürü",
+      "description": "Küpe, isim ya da son 4 haneyle bulun. Sağmal, kuru, düve, buzağı ve dana dağılımı listenin başında.",
+      "icon": "suru"
+     },
+     {
+      "_key": "b003",
+      "title": "Süt",
+      "description": "Sabah ve akşam vardiyası iki düğmeyle girilir. Son 30 günün tank grafiği hedef çizgisiyle gelir.",
+      "icon": "sut"
+     },
+     {
+      "_key": "b004",
+      "title": "Üreme",
+      "description": "Gebe kalma oranı, açık gün ve buzağılama aralığı hedefleriyle yan yana. Sıradaki iş her hayvanın sayfasında.",
+      "icon": "ureme"
+     },
+     {
+      "_key": "b005",
+      "title": "Sağlık",
+      "description": "Tedaviler, aşılar, protokoller, ilaç stoğu ve revir tek sekmede. Aktif arınmadaki hayvanlar ayrıca görünür.",
+      "icon": "saglik"
+     },
+     {
+      "_key": "b006",
+      "title": "Besleme",
+      "description": "Günlük yem, günlük maliyet ve düşük stok bir bakışta. Fiyatı ortalamadan sapan alımlar uyarı olarak düşer.",
+      "icon": "besleme"
+     },
+     {
+      "_key": "b007",
+      "title": "Besi",
+      "description": "Partileri, tartımları ve günlük canlı ağırlık kazancını izleyin. Kilogram maliyeti ve satış projeksiyonu hazır.",
+      "icon": "besi"
+     },
+     {
+      "_key": "b008",
+      "title": "Gelir / Gider",
+      "description": "Dönem dönem gelir, gider ve net. Son kayıtlar ve geçen döneme göre değişim aynı ekranda.",
+      "icon": "finans"
+     },
+     {
+      "_key": "b009",
+      "title": "Raporlar",
+      "description": "Günlük rapor, süt, üreme ve sağlık raporları. Kayıtlarınızı Excel'e aktarıp paylaşabilirsiniz.",
+      "icon": "rapor"
+     },
+     {
+      "_key": "b010",
+      "title": "Topluluk ve Pazar",
+      "description": "Çiftçi akışında paylaşın, Pazar'da hayvan, yem ve ekipman ilanı verin, uygulama içinden mesajlaşın.",
+      "icon": "topluluk"
+     },
+     {
+      "_key": "b011",
+      "title": "Rehber",
+      "description": "Sürü, sağlık, üreme, yem ve besi üzerine kısa makaleler ve video rehberler uygulamanın içinde.",
+      "icon": "rehber"
+     }
+    ]
+   },
+   {
+    "_type": "ac_announce",
+    "_key": "b013",
+    "anchor_id": "veteriner",
+    "headline": "Aklınıza takılanı veteriner hekime sorun",
+    "body": "Veteriner Hekime Sor ile sorunuzu fotoğraf ve notla gönderin, yanıtı uygulama içinde sohbet olarak alın. Platinum planda.",
+    "button_label": "Planları inceleyin",
+    "button_url": "https://giris.ahirimcebimde.com/giris"
+   },
+   {
+    "_type": "ac_chapter",
+    "_key": "b015",
+    "anchor_id": "ureme",
+    "marker": "Üreme",
+    "color": "pembe",
+    "shape": "arti",
+    "headline": "Gebeliği ve doğumu günü gününe izleyin",
+    "body": "Gebe kalma oranı, açık gün ve buzağılama aralığı hedef aralığıyla yan yana durur. Her hayvanın sayfası sıradaki işi söyler: kuruya çıkarma ve beklenen doğum, kayıtlardan kendiliğinden hesaplanır.",
+    "button_label": "Hemen başlayın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "flip": false,
+    "screens": [
+     "ureme",
+     "hayvan"
+    ],
+    "screens_alt": "Üreme ekranı ve Lale adlı ineğin sayfası",
+    "chips": [
+     {
+      "_key": "b014",
+      "label": "Açık gün",
+      "value": "101 gün",
+      "note": "Hedef 85 ile 110 gün"
+     }
+    ]
+   },
+   {
+    "_type": "ac_chapter",
+    "_key": "b018",
+    "anchor_id": "sut",
+    "marker": "Süt",
+    "color": "turuncu",
+    "shape": "daireler",
+    "headline": "Her sağımı iki dokunuşla girin",
+    "body": "Sabah ve Akşam düğmeleri vardiyanın sütünü doğrudan açar. Günün toplamı hedefle karşılaştırılır, son 30 günün tank grafiği ve yağ, protein, somatik hücre değerleri aynı ekranda.",
+    "button_label": "Hemen başlayın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "flip": true,
+    "screens": [
+     "sut"
+    ],
+    "screens_alt": "Süt ekranı: bugünkü süt ve hedef, son 30 günün tank grafiği",
+    "chips": [
+     {
+      "_key": "b016",
+      "label": "Son 30 gün",
+      "value": "Ort 705 L",
+      "note": "En iyi gün 1.108 L"
+     },
+     {
+      "_key": "b017",
+      "label": "Tank",
+      "value": "SHS 260 bin",
+      "note": "Yağ %3,9 · Protein %3,4"
+     }
+    ]
+   },
+   {
+    "_type": "ac_invite",
+    "_key": "b019",
+    "headline": "Ahırda kayıt, tek düğmeyle",
+    "body": "\"+ Kayıt\" düğmesi her ekranda elinizin altında. Tohumlama, gebelik kontrolü, kızgınlık, tedavi, aşı, süt, tartım ve doğum aynı listede açılır.",
+    "button_label": "Tarayıcıda açın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "screens": [
+     "saglik",
+     "suru",
+     "kayit",
+     "besi",
+     "pano"
+    ]
+   },
+   {
+    "_type": "ac_chapter",
+    "_key": "b021",
+    "anchor_id": "besleme",
+    "marker": "Besleme",
+    "color": "sari",
+    "shape": "gunes",
+    "headline": "Yem stoğu bitmeden haberiniz olsun",
+    "body": "Günlük yem ve günlük maliyet, hayvan başına düşen tutarla birlikte görünür. Stok eşiğin altına inince ya da bir alımın fiyatı ortalamadan saparsa uyarı listesine düşer. Besi partileri de günlük kazançla izlenir.",
+    "button_label": "Hemen başlayın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "flip": false,
+    "screens": [
+     "besleme",
+     "besi"
+    ],
+    "screens_alt": "Besleme ve Besi ekranları",
+    "chips": [
+     {
+      "_key": "b020",
+      "label": "Kritik stok",
+      "value": "Arpa Kırması",
+      "note": "Eşiğin altına inince uyarı düşer."
+     }
+    ]
+   },
+   {
+    "_type": "ac_chapter",
+    "_key": "b024",
+    "anchor_id": "finans",
+    "marker": "Gelir / Gider",
+    "color": "yesil",
+    "shape": "dalga",
+    "headline": "Çiftliğiniz kazanıyor mu, bir bakışta görün",
+    "body": "Bu hafta, bu ay ya da bu yıl: seçtiğiniz dönemin geliri, gideri ve neti tek kartta. Geçen döneme göre değişim ve son kayıtlar hemen altında.",
+    "button_label": "Hemen başlayın",
+    "button_url": "https://giris.ahirimcebimde.com/giris",
+    "flip": true,
+    "screens": [
+     "gelir-gider"
+    ],
+    "screens_alt": "Gelir / Gider ekranı",
+    "chips": [
+     {
+      "_key": "b022",
+      "label": "Dönem",
+      "value": "Bu hafta · Bu ay · Bu yıl",
+      "note": "Net tutar seçtiğiniz döneme göre hesaplanır."
+     },
+     {
+      "_key": "b023",
+      "label": "Son kayıt",
+      "value": "Yem · Gider",
+      "note": "Mısır Silajı alımı"
+     }
+    ]
+   },
+   {
+    "_type": "ac_access",
+    "_key": "b028",
+    "anchor_id": "indir",
+    "headline": "Size uyan yerden başlayın",
+    "items": [
+     {
+      "_key": "b025",
+      "title": "iPhone ve iPad",
+      "description": "Ahırda telefondan kayıt girin, bildirimlerle aşı, doğum ve tedavi günlerini kaçırmayın.",
+      "kind": "apple",
+      "button_label": "App Store",
+      "button_url": "https://apps.apple.com/app/id6779227305"
+     },
+     {
+      "_key": "b026",
+      "title": "Android",
+      "description": "Aynı hesapla Android telefon ve tabletlerde. Çiftliğinizin verisi her cihazda aynı.",
+      "kind": "android",
+      "button_label": "Google Play",
+      "button_url": "https://play.google.com/store/apps/details?id=com.pozitrone.farmos"
+     },
+     {
+      "_key": "b027",
+      "title": "Bilgisayar",
+      "description": "Kurulum gerekmez. Raporlara, gelir-gidere ve toplu girişe tarayıcıdan geniş ekranda ulaşın.",
+      "kind": "web",
+      "button_label": "Tarayıcıda giriş yapın",
+      "button_url": "https://giris.ahirimcebimde.com/giris"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "sss",
+  "title": "Sık sorulan sorular",
+  "seo": {
+   "description": "Ahırım Cebimde hakkında sık sorulan sorular."
+  },
+  "bolumler": [
+   {
+    "_type": "ac_page_head",
+    "_key": "b029",
+    "headline": "Sık sorulan sorular",
+    "intro": [
+     {
+      "_type": "block",
+      "_key": "k4",
+      "style": "normal",
+      "markDefs": [
+       {
+        "_type": "link",
+        "_key": "k1",
+        "href": "/iletisim"
+       }
+      ],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "k0",
+        "text": "Uygulama, abonelik ve hesabınız hakkında en çok sorulanlar. Yanıtını bulamadığınız soru için ",
+        "marks": []
+       },
+       {
+        "_type": "span",
+        "_key": "k2",
+        "text": "bize yazın",
+        "marks": [
+         "k1"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "k3",
+        "text": ".",
+        "marks": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b035",
+    "headline": "Genel",
+    "items": [
+     {
+      "_key": "b030",
+      "question": "Ahırım Cebimde nedir?",
+      "answer": "Süt ve besi çiftlikleri için Türkçe sürü yönetimi uygulamasıdır. Hayvan, süt, üreme, sağlık, yem ve rasyon, besi ve gelir-gider kayıtlarını defter, ajanda ve dağınık Excel yerine tek yerde tutar."
+     },
+     {
+      "_key": "b031",
+      "question": "Hangi cihazlarda çalışır?",
+      "answer": "iPhone, iPad, Android telefon ve tabletlerde ve tarayıcıdan bilgisayarda çalışır. Aynı hesapla girdiğiniz her cihazda aynı veriyi görürsünüz."
+     },
+     {
+      "_key": "b032",
+      "question": "İnternet olmadan kullanabilir miyim?",
+      "answer": "Hayır. Kayıtlar girildiği anda sunucuya yazılır, bu yüzden uygulamayı kullanırken internet bağlantısı gerekir."
+     },
+     {
+      "_key": "b033",
+      "question": "Birden fazla kullanıcı ekleyebilir miyim?",
+      "answer": "Evet. Çiftlik yöneticisi Kullanıcılar bölümünde rol seçip bir davet kodu oluşturur ve WhatsApp ya da SMS ile gönderir. Davetli kendi hesabıyla giriş yapıp \"Davet koduyla katıl\" düğmesine dokunarak kodu yazar. Roller: veteriner, ziraat mühendisi, muhasebeci, patron ve çiftlik yöneticisi."
+     },
+     {
+      "_key": "b034",
+      "question": "Verilerimi dışa aktarabilir miyim?",
+      "answer": "Evet. Ayarlar bölümünden tüm çiftlik kayıtlarınızı Excel olarak indirebilirsiniz. Hayvanlarınızı Excel'den toplu olarak yükleyebilir, raporları WhatsApp ya da e-postayla paylaşabilirsiniz."
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b039",
+    "headline": "Üreme ve hatırlatmalar",
+    "items": [
+     {
+      "_key": "b036",
+      "question": "Hangi işler için bildirim gelir?",
+      "answer": "Aşı, doğum, tedavi, arınma, kuruya alma, yem ve gebelik kontrolü için bildirim gelir."
+     },
+     {
+      "_key": "b037",
+      "question": "Tarihleri uygulama mı hesaplıyor?",
+      "answer": "Evet. Kızgınlık, tohumlama ve gebelik kontrolü kayıtlarından bir sonraki kızgınlık (21 gün), gebelik kontrolü günü (varsayılan 28. gün), kuruya alma (varsayılan 220. gün) ve beklenen doğum hesaplanır. Varsayılan günleri Ayarlar bölümünden değiştirebilirsiniz."
+     },
+     {
+      "_key": "b038",
+      "question": "Sütü ilaçlı ineğin sütü ne zaman tanka girer?",
+      "answer": "Tedavi kaydında ilacın süt ve et arınma süresi izlenir. Sağlık bölümündeki Aktif Arınma listesi ve Süt Arınması raporu, sütü ayrılan hayvanları ve son günü gösterir."
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b043",
+    "headline": "Abonelik",
+    "items": [
+     {
+      "_key": "b040",
+      "question": "Hangi planlar var?",
+      "answer": "Pro ve Platinum planları vardır ve aylıktır. Güncel fiyatlar uygulamadaki Plan Seç ekranında ve mağaza sayfasında gösterilir. Veteriner Hekime Sor danışmanlığı Platinum plandadır."
+     },
+     {
+      "_key": "b041",
+      "question": "Aboneliğimi nasıl iptal ederim?",
+      "answer": "iPhone ve iPad'de Ayarlar, Apple Kimliği, Abonelikler, Ahırım Cebimde yolunu izleyin. Android'de Google Play uygulamasında Ödemeler ve abonelikler bölümünü açın. İptal, içinde bulunduğunuz dönemin sonunda geçerli olur."
+     },
+     {
+      "_key": "b042",
+      "question": "Satın aldığım abonelik görünmüyor.",
+      "answer": "Plan ekranındaki \"Satın alımları geri yükle\" düğmesine dokunun. Sorun sürerse e-posta ile bize ulaşın."
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b047",
+    "headline": "Hesap ve güvenlik",
+    "items": [
+     {
+      "_key": "b044",
+      "question": "Şifremi unuttum.",
+      "answer": "Giriş ekranında \"Şifremi unuttum\" bağlantısına dokunun ve hesabınızın e-posta adresini girin. E-postanıza gelen 6 haneli kodu uygulamaya yazıp yeni şifrenizi belirleyin. Kod gelmezse gereksiz (spam) klasörüne bakın, yine gelmezse aynı ekrandaki WhatsApp yardım bağlantısından ya da e-postayla bize ulaşın."
+     },
+     {
+      "_key": "b045",
+      "question": "Verilerimi kim görebilir?",
+      "answer": "Çiftlik verileriniz işletmenize aittir ve yalnız sizin çiftliğinize yetkili kullanıcılar erişebilir. Şifreler geri döndürülemez biçimde özetlenerek saklanır. Ayrıntılar Gizlilik Politikası'ndadır."
+     },
+     {
+      "_key": "b046",
+      "question": "Hesabımı nasıl silerim?",
+      "answer": "Hesabınızı uygulama içinden ya da e-postayla silebilirsiniz. Adımlar Hesap silme sayfasında anlatılıyor."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "destek",
+  "title": "Yardım ve destek",
+  "seo": {
+   "description": "Ahırım Cebimde destek kanalları ve sık sorulan sorular."
+  },
+  "bolumler": [
+   {
+    "_type": "ac_page_head",
+    "_key": "b048",
+    "headline": "Yardım ve destek",
+    "intro": [
+     {
+      "_type": "block",
+      "_key": "k6",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "k5",
+        "text": "Soru, hata bildirimi ve abonelik yardımı için size en uygun yolu seçin. Talepleri genellikle 1 ile 2 iş günü içinde yanıtlıyoruz.",
+        "marks": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "_type": "ac_cards",
+    "_key": "b052",
+    "items": [
+     {
+      "_key": "b049",
+      "title": "Uygulama içinden",
+      "description": "Daha, Yönetim, Yardım ve Destek yolundan hata, öneri, soru ya da fatura talebi açın ve yanıtı sohbet olarak takip edin.",
+      "icon": "telefon",
+      "button_label": "Uygulamayı açın",
+      "button_url": "https://giris.ahirimcebimde.com/giris"
+     },
+     {
+      "_key": "b050",
+      "title": "E-posta",
+      "description": "Her türlü soru, hata bildirimi ve abonelik yardımı için bize e-posta gönderin.",
+      "icon": "eposta",
+      "button_label": "pozitrone@icloud.com",
+      "button_url": "mailto:pozitrone@icloud.com"
+     },
+     {
+      "_key": "b051",
+      "title": "Sık sorulan sorular",
+      "description": "Abonelik, kullanıcı ekleme, veri aktarımı ve hatırlatmalar hakkında hazır yanıtlar.",
+      "icon": "kitap",
+      "button_label": "Soruları görün",
+      "button_url": "/sss"
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b056",
+    "headline": "Abonelik",
+    "items": [
+     {
+      "_key": "b053",
+      "question": "Hangi planlar var?",
+      "answer": "Pro ve Platinum planları vardır ve aylıktır. Güncel fiyatlar uygulamadaki Plan Seç ekranında ve mağaza sayfasında gösterilir. Veteriner Hekime Sor danışmanlığı Platinum plandadır."
+     },
+     {
+      "_key": "b054",
+      "question": "Aboneliğimi nasıl iptal ederim?",
+      "answer": "iPhone ve iPad'de Ayarlar, Apple Kimliği, Abonelikler, Ahırım Cebimde yolunu izleyin. Android'de Google Play uygulamasında Ödemeler ve abonelikler bölümünü açın. İptal, içinde bulunduğunuz dönemin sonunda geçerli olur."
+     },
+     {
+      "_key": "b055",
+      "question": "Satın aldığım abonelik görünmüyor.",
+      "answer": "Plan ekranındaki \"Satın alımları geri yükle\" düğmesine dokunun. Sorun sürerse e-posta ile bize ulaşın."
+     }
+    ]
+   },
+   {
+    "_type": "ac_faq",
+    "_key": "b060",
+    "headline": "Hesap ve güvenlik",
+    "items": [
+     {
+      "_key": "b057",
+      "question": "Şifremi unuttum.",
+      "answer": "Giriş ekranında \"Şifremi unuttum\" bağlantısına dokunun ve hesabınızın e-posta adresini girin. E-postanıza gelen 6 haneli kodu uygulamaya yazıp yeni şifrenizi belirleyin. Kod gelmezse gereksiz (spam) klasörüne bakın, yine gelmezse aynı ekrandaki WhatsApp yardım bağlantısından ya da e-postayla bize ulaşın."
+     },
+     {
+      "_key": "b058",
+      "question": "Verilerimi kim görebilir?",
+      "answer": "Çiftlik verileriniz işletmenize aittir ve yalnız sizin çiftliğinize yetkili kullanıcılar erişebilir. Şifreler geri döndürülemez biçimde özetlenerek saklanır. Ayrıntılar Gizlilik Politikası'ndadır."
+     },
+     {
+      "_key": "b059",
+      "question": "Hesabımı nasıl silerim?",
+      "answer": "Hesabınızı uygulama içinden ya da e-postayla silebilirsiniz. Adımlar Hesap silme sayfasında anlatılıyor."
+     }
+    ]
+   },
+   {
+    "_type": "ac_text",
+    "_key": "b061",
+    "body": [
+     {
+      "_type": "block",
+      "_key": "k9",
+      "style": "normal",
+      "markDefs": [
+       {
+        "_type": "link",
+        "_key": "k7",
+        "href": "/hesap-sil"
+       }
+      ],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "k8",
+        "text": "Hesap ve veri silme",
+        "marks": [
+         "k7"
+        ]
+       }
+      ]
+     }
+    ],
+    "align": "sol"
+   }
+  ]
+ },
+ {
+  "slug": "iletisim",
+  "title": "İletişim",
+  "seo": {
+   "description": "Ahırım Cebimde ile iletişim: e-posta, uygulama içi destek ve sosyal medya."
+  },
+  "bolumler": [
+   {
+    "_type": "ac_page_head",
+    "_key": "b062",
+    "headline": "İletişim",
+    "intro": [
+     {
+      "_type": "block",
+      "_key": "kb",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ka",
+        "text": "Sorunuz, öneriniz ya da iş birliği teklifiniz için bize ulaşın. Talepleri genellikle 1 ile 2 iş günü içinde yanıtlıyoruz.",
+        "marks": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "_type": "ac_cards",
+    "_key": "b066",
+    "items": [
+     {
+      "_key": "b063",
+      "title": "E-posta",
+      "description": "Destek, abonelik, basın ve iş birliği konuları için.",
+      "icon": "eposta",
+      "button_label": "pozitrone@icloud.com",
+      "button_url": "mailto:pozitrone@icloud.com",
+      "filled": true
+     },
+     {
+      "_key": "b064",
+      "title": "Uygulama içi destek",
+      "description": "Uygulamadan destek talebi açarsanız çiftliğinizin bilgisiyle birlikte gelir, daha hızlı yanıtlarız.",
+      "icon": "telefon",
+      "button_label": "Yardım ve destek",
+      "button_url": "/destek"
+     },
+     {
+      "_key": "b065",
+      "title": "Sosyal medya",
+      "description": "Yenilikler, ipuçları ve kısa videolar için bizi takip edin.",
+      "icon": "sohbet",
+      "button_label": "Instagram",
+      "button_url": "https://www.instagram.com/ahirimcebimde/",
+      "button2_label": "Facebook",
+      "button2_url": "https://www.facebook.com/profile.php?id=61595753976997"
+     }
+    ]
+   },
+   {
+    "_type": "ac_text",
+    "_key": "b067",
+    "body": [
+     {
+      "_type": "block",
+      "_key": "kd",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "kc",
+        "text": "Ahırım Cebimde, Pozitrone Yazılım tarafından geliştirilir.",
+        "marks": []
+       }
+      ]
+     }
+    ],
+    "align": "orta"
+   }
+  ]
+ },
+ {
+  "slug": "hakkimizda",
+  "title": "Hakkımızda",
+  "seo": {
+   "description": "Ahırım Cebimde neden ve kim için yapıldı."
+  },
+  "bolumler": [
+   {
+    "_type": "ac_page_head",
+    "_key": "b068",
+    "headline": "Sürünüzü cebinize sığdırıyoruz",
+    "intro": [
+     {
+      "_type": "block",
+      "_key": "kf",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ke",
+        "text": "Ahırım Cebimde, süt ve besi çiftliklerinin günlük işini defterden, ajandadan ve dağınık Excel dosyalarından kurtarmak için yapıldı.",
+        "marks": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "_type": "ac_stats",
+    "_key": "b073",
+    "items": [
+     {
+      "_key": "b069",
+      "value": "16",
+      "label": "kayıt türü, tek \"+ Kayıt\" düğmesinde"
+     },
+     {
+      "_key": "b070",
+      "value": "5",
+      "label": "rol: veteriner, ziraat mühendisi, muhasebeci, patron, yönetici"
+     },
+     {
+      "_key": "b071",
+      "value": "104",
+      "label": "Rehber makalesi, uygulamanın içinde"
+     },
+     {
+      "_key": "b072",
+      "value": "3",
+      "label": "platform: iOS, Android ve web, aynı veriyle"
+     }
+    ]
+   },
+   {
+    "_type": "ac_chapter",
+    "_key": "b074",
+    "marker": "Neden",
+    "color": "yesil",
+    "shape": "gunes",
+    "headline": "Ahırdaki iş ile hesap aynı yerde",
+    "body": "Bir ineğin ne zaman tohumlandığı, sütünün ne zaman tanka gireceği ya da yem stoğunun kaç gün yeteceği ahırda sorulur. Ahırım Cebimde bu soruların yanıtını, kaydı giren kişinin cebine koyar.",
+    "flip": false,
+    "screens": [
+     "pano",
+     "suru"
+    ],
+    "screens_alt": "Pano ekranı ve Sürü ekranı",
+    "chips": []
+   },
+   {
+    "_type": "ac_text",
+    "_key": "b075",
+    "align": "sol",
+    "body": [
+     {
+      "_type": "block",
+      "_key": "kh",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "kg",
+        "text": "Neye önem veriyoruz",
+        "marks": []
+       }
+      ]
+     },
+     {
+      "_type": "block",
+      "_key": "kk",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ki",
+        "text": "Ahırda hızlı kayıt.",
+        "marks": [
+         "strong"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "kj",
+        "text": " Büyük yazılar, eldivenle dokunulan düğmeler, \"Kaydet ve sonraki\" ve \"Geri al\".",
+        "marks": []
+       }
+      ],
+      "listItem": "bullet",
+      "level": 1
+     },
+     {
+      "_type": "block",
+      "_key": "kn",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "kl",
+        "text": "Hatırlatma, ezber değil.",
+        "marks": [
+         "strong"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "km",
+        "text": " Gebelik kontrolü, kuruya alma, beklenen doğum ve arınma günleri kayıtlardan hesaplanır, gün gelince bildirim gelir.",
+        "marks": []
+       }
+      ],
+      "listItem": "bullet",
+      "level": 1
+     },
+     {
+      "_type": "block",
+      "_key": "kq",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ko",
+        "text": "Verileriniz sizin.",
+        "marks": [
+         "strong"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "kp",
+        "text": " Tüm kayıtlarınızı Excel'e aktarabilir, istediğiniz zaman hesabınızı ve verilerinizi silebilirsiniz.",
+        "marks": []
+       }
+      ],
+      "listItem": "bullet",
+      "level": 1
+     },
+     {
+      "_type": "block",
+      "_key": "kt",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "kr",
+        "text": "Sahadan Türkçe.",
+        "marks": [
+         "strong"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "ks",
+        "text": " Uygulama, rehber ve destek baştan sona Türkçe; çiftçinin ve veteriner hekimin kullandığı dille.",
+        "marks": []
+       }
+      ],
+      "listItem": "bullet",
+      "level": 1
+     },
+     {
+      "_type": "block",
+      "_key": "kv",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ku",
+        "text": "Kim yapıyor",
+        "marks": []
+       }
+      ]
+     },
+     {
+      "_type": "block",
+      "_key": "kx",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "kw",
+        "text": "Ahırım Cebimde, Pozitrone Yazılım tarafından geliştirilir. Uygulama App Store ve Google Play'de, web sürümü giris.ahirimcebimde.com adresinde.",
+        "marks": []
+       }
+      ]
+     },
+     {
+      "_type": "block",
+      "_key": "k12",
+      "style": "normal",
+      "markDefs": [
+       {
+        "_type": "link",
+        "_key": "kz",
+        "href": "/iletisim"
+       }
+      ],
+      "children": [
+       {
+        "_type": "span",
+        "_key": "ky",
+        "text": "Bize ",
+        "marks": []
+       },
+       {
+        "_type": "span",
+        "_key": "k10",
+        "text": "iletişim sayfasından",
+        "marks": [
+         "kz"
+        ]
+       },
+       {
+        "_type": "span",
+        "_key": "k11",
+        "text": " ulaşabilirsiniz.",
+        "marks": []
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+]
